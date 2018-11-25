@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Shopping.Models.Customer>
+@{
+    ViewBag.Title = "用户列表";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary" id="list-panel">
+            <div class="panel-heading">
+                <h1 class="panel-title">用户列表</h1>
+            </div>
+            <div class="panel-body">
+                <table id="assets-data-table" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>姓名</th>
+                            <th>密码</th>
+                            <th>电话</th>
+                            <th>邮件</th>
+                            <th>创建时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var asset in Model)
+                        {
+                            <tr>
+                                <td>@asset.CustomerID.ToString()</td>
+                                <td>@asset.CustomerName</td>
+                                <td>@asset.CustomerPWD</td>
+                                <td>@asset.Tel</td>
+                                <td>@asset.Email</td>
+                                <td><span class="btn-success">@asset.CreateTime</span></td>
+                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

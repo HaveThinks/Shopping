@@ -1,0 +1,100 @@
+﻿
+@{
+    Layout = null;
+}
+<script src="http://malsup.github.io/jquery.form.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#sum1").click(function () {
+
+                var mydate = new Date();
+                var myTime = mydate.toLocaleString();//获取日期和时间
+                var img;
+                $("#ff").ajaxSubmit({
+                    url: "@Url.Action("AddPric")",
+                    type: "post",
+                    success: function (data) {
+                        if (data == "") {
+                            img = $("#IMG").val();
+                        }
+                        else {
+                            img = data;
+                        }
+                        
+                        var p = {
+                            ProperID: $("#ProperID").val(),
+                            ProperName: $("#ProperName").val(),
+                            Price: $("#Price").val(),
+                            Quantity: $("#Quantity").val(),
+                            TypeID:$("#TypeID").val(),
+                            Description: $("#Description").val(),
+                            IMG:img
+                        };
+                        $.post("@Url.Action("EditProperty")", p, function (data) {
+                            //$("#myModal").modal("hide");
+                            //$("#table_id_example").dataTable().ajax.reload();
+                            if (data != null) {
+                                alert("修改商品属性成功！");
+                                location.reload();
+                            }
+                        });
+                    }
+                });
+
+
+        })
+    });
+</script>
+<form id="ff">
+    @foreach (Shopping.Models.ProductProperty item in ViewBag.productPro)
+    {
+        <div class="from-group">
+            <label class="control-label" for="ProperID">属性编号</label>
+            @Html.TextBox("ProperID", item.ProperID, new { @readonly = "readonly", Class = "form-control" })
+        </div>
+        <div class="from-group">
+            <label class="control-label" for="TypeName">属性名称</label>
+            @Html.TextBox("ProperName", item.ProperName, new { placeholder = "请输入类型名称", Class = "form-control" })
+            <span id="s1"></span>
+            <span style="display:none;color:red" id="account1">请输入属性名称</span>
+        </div>
+        <div class="from-group">
+            <label class="control-label" for="">原始图片</label>
+            @Html.TextBox("IMG", item.IMG, new { @readonly = "readonly" })
+            <input class="input-group" id="FileUpload1" name="FileUpload1" type="file" />
+        </div>
+        <div class="from-group">
+            <label class="control-label" for="Price">价格</label>
+            <input type="number" name="Price" id="Price" value="@item.Price" min="0" max="10000" />
+            @*<span class="add-on">$<input type="number" name="Price" id="Price" value="@item.Price" min="0" max="10000" />.00</span>*@
+        </div>
+        <div class="from-group">
+            <label class="control-label" for="Quantity">库存</label>
+            <input type="number" name="Quantity" id="Quantity" value="@item.Quantity" min="0" max="10000" />
+        </div>
+        <div class="from-group">
+            <label class="control-label" for="Quantity">所属型号</label>
+            <div class="controls">
+                <select id="TypeID" name="TypeID">
+                    <option>选择商品所属型号</option>
+                    @foreach (Shopping.Models.ProductType item1 in ViewBag.productType)
+                    {
+                        if (item.TypeID == item1.TypeID)
+                        {
+                            <option value="@item1.TypeID" selected="selected">@item1.TypeName</option>
+                        }
+                        else
+                        {
+                            <option value="@item1.TypeID">@item1.TypeName</option>
+                        }
+
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="from-group">
+            <label class="control-label" for="Description">属性描述</label>
+            @Html.TextBox("Description", item.Description, new { placeholder = "请输入属性描述", Class = "form-control" })
+        </div>
+    }
+</form>

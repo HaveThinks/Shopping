@@ -1,0 +1,202 @@
+body {
+	background-color: #f6f6f6
+}
+
+.myOrder {
+	width: 1140px;
+	margin: 50px auto;
+	min-height: 500px;
+	padding-bottom: 100px;
+	position: relative;
+	overflow: auto
+}
+
+.myOrder .userPanel {
+	position: relative;
+	width: 220px;
+	margin-right: 20px;
+	padding-top: 55px;
+	float: left
+}
+
+.myOrder .orderGroup {
+	width: 900px;
+	float: left;
+	min-height: 500px;
+	position: relative
+}
+
+.myOrder .orderGroup .orderGroup-title {
+	height: 25px;
+	margin-bottom: 30px
+}
+
+.myOrder .orderGroup .orderGroup-title ul {
+	width: 897px;
+	height: 100%;
+	font-size: 18px
+}
+
+.myOrder .orderGroup .orderGroup-title ul>li {
+	position: relative;
+	color: #a4a9ad;
+	height: 100%;
+	line-height: 25px;
+	float: left;
+	width: 24%;
+	text-align: center;
+	border-right: 1px solid #979797;
+	cursor: pointer
+}
+
+.myOrder .orderGroup .orderGroup-title ul>li .arrow-up {
+	display: none;
+	position: absolute;
+	bottom: -30px;
+	left: 50%;
+	margin-left: -8px;
+	height: 0;
+	width: 0;
+	font-size: 0;
+	line-height: 0;
+	border-color: transparent transparent #fff;
+	border-style: dashed dashed solid;
+	border-width: 10px
+}
+
+.myOrder .orderGroup .orderGroup-title ul>li .arrow-up i {
+	position: absolute;
+	top: -9px;
+	*top: -9px;
+	left: -10px;
+	display: block;
+	height: 0;
+	width: 0;
+	font-size: 0;
+	line-height: 0;
+	border-color: transparent transparent #fff;
+	border-style: dashed dashed solid;
+	border-width: 10px
+}
+
+.myOrder .orderGroup .orderGroup-title ul>li.active {
+	color: #040404
+}
+
+.myOrder .orderGroup .orderGroup-title ul>li.active .arrow-up {
+	display: block
+}
+
+.myOrder .orderGroup .orderGroup-title ul:last-child {
+	border-right: 0
+}
+
+.myOrder .orderGroup .orderGroup-list {
+	position: relative;
+	padding: 0;
+	min-height: 300px
+}
+
+.myOrder .orderGroup .loadinggif {
+	display: block;
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	left: 50%;
+	top: 150px;
+	margin-left: -16px;
+	z-index: 1000;
+	background: url(images/loading_50c5e3e7.gif) center no-repeat
+}
+
+.niu-mask {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #333;
+	opacity: .8;
+	display: none;
+	z-index: 999
+}
+
+.niu-dialog {
+	display: none;
+	position: fixed;
+	width: 400px;
+	height: 250px;
+	top: 50%;
+	left: 50%;
+	margin-top: -173px;
+	margin-left: -211px;
+	border-radius: 5px;
+	background-color: #fff;
+	z-index: 1000
+}
+
+.niu-dialog .niu-dialog-head {
+	font-size: 26px;
+	font-weight: 400;
+	text-align: center;
+	margin-bottom: 20px
+}
+
+.niu-dialog .niu-dialog-body {
+	padding: 30px 45px;
+	text-align: center;
+	line-height: 20px
+}
+
+.niu-dialog .niu-dialog-foot {
+	height: 55px;
+	margin-top: 20px;
+	padding: 0 10px;
+	font-size: 14px
+}
+
+.niu-dialog .niu-dialog-foot .niu-dialog-confirm {
+	float: left;
+	width: 200px;
+	height: 40px;
+	font-size: 14px;
+	text-align: center;
+	margin-left: 88px;
+	background: #df001f;
+	line-height: 40px;
+	color: #fff;
+	border-radius: 5px;
+	cursor: pointer
+}
+
+.niu-dialog .niu-dialog-foot .niu-dialog-cancel {
+	float: left;
+	width: 200px;
+	height: 40px;
+	font-size: 14px;
+	text-align: center;
+	margin-left: 88px;
+	background: #df001f;
+	line-height: 40px;
+	color: #fff;
+	border-radius: 5px;
+	cursor: pointer
+}
+
+.niu-dialog .niu-dialog-close {
+	position: absolute;
+	display: block;
+	width: 120px;
+	height: 40px;
+	background: url(images/icon-x_b84ca108.png) no-repeat center;
+	cursor: pointer;
+	bottom: 40px;
+	left: 140px;
+	background: #df001f;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	color: #fff;
+	text-align: center;
+	line-height: 40px
+}

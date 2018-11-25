@@ -1,0 +1,397 @@
+﻿.shoppingcart {
+    width: 1200px;
+    margin: 0 auto;
+    min-height: 300px;
+}
+
+    .shoppingcart .title {
+        font-size: 20px;
+        text-align: left;
+    }
+
+    .shoppingcart .commodity {
+        border: 1px solid #d1d3d3;
+        border-radius: 5px;
+        min-height: 210px;
+        position: relative;
+        border-sizing: border-box;
+    }
+
+        .shoppingcart .commodity > :last-child {
+            border: 0;
+        }
+
+        .shoppingcart .commodity .captioncentent {
+            background-color: #d1d3d3;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-sizing: border-box;
+        }
+
+        .shoppingcart .commodity .time {
+            width: 90px;
+            height: 90px;
+            border: 3px solid #df001f;
+            border-radius: 50%;
+            position: absolute;
+            left: 15px;
+            top: 55px;
+            text-align: center;
+            color: #df001f;
+            font-size: 14px;
+            line-height: 21px;
+        }
+
+            .shoppingcart .commodity .time .time_word {
+                color: #7f7f7f;
+                margin-top: 24px;
+            }
+
+        .shoppingcart .commodity .com-item:last-child {
+            border: 0;
+        }
+
+        .shoppingcart .commodity .com-item, .shoppingcart .commodity .caption {
+            width: 100%;
+        }
+
+            .shoppingcart .commodity .com-item li, .shoppingcart .commodity .caption li {
+                float: left;
+                list-style: none;
+                text-align: center;
+                position: relative;
+                color: #5c6670;
+            }
+
+            .shoppingcart .commodity .com-item .com-message, .shoppingcart .commodity .caption .com-message {
+                width: 680px;
+                text-align: left;
+                padding-left: 20px;
+            }
+
+            .shoppingcart .commodity .com-item .com-pic, .shoppingcart .commodity .caption .com-pic {
+                width: 220px;
+            }
+
+            .shoppingcart .commodity .com-item .com-name, .shoppingcart .commodity .caption .com-name {
+                width: 400px;
+            }
+
+            .shoppingcart .commodity .com-item .com-name-special, .shoppingcart .commodity .caption .com-name-special {
+                width: 480px;
+            }
+
+                .shoppingcart .commodity .com-item .com-name-special i, .shoppingcart .commodity .caption .com-name-special i {
+                    float: left;
+                    margin-left: 40px;
+                    margin-top: 80px;
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    background-image: url(//www.niucache.com/static/home/widget/shopping_cart/special-icon_6d92b6b4.png);
+                    background-image: linear-gradient(transparent,transparent),url(//www.niucache.com/static/home/widget/shopping_cart/special-icon_1d7a672e.svg);
+                }
+
+                .shoppingcart .commodity .com-item .com-name-special p, .shoppingcart .commodity .caption .com-name-special p {
+                    width: 60%;
+                    text-align: left;
+                    margin-left: 100px;
+                }
+
+                .shoppingcart .commodity .com-item .com-name-special .special, .shoppingcart .commodity .caption .com-name-special .special {
+                    margin-top: 84px;
+                    margin-bottom: 5px;
+                    color: #212121;
+                }
+
+            .shoppingcart .commodity .com-item .com-pice, .shoppingcart .commodity .com-item .com-count, .shoppingcart .commodity .com-item .com-total, .shoppingcart .commodity .caption .com-pice, .shoppingcart .commodity .caption .com-count, .shoppingcart .commodity .caption .com-total {
+                width: 123px;
+            }
+
+        .shoppingcart .commodity .caption {
+            height: 40px;
+        }
+
+            .shoppingcart .commodity .caption li {
+                height: 100%;
+                line-height: 40px;
+                font-size: 14px;
+            }
+
+            .shoppingcart .commodity .caption .com-pice, .shoppingcart .commodity .caption .com-count, .shoppingcart .commodity .caption .com-total, .shoppingcart .commodity .caption .com-name {
+                border-left: 1px solid #fff;
+            }
+
+        .shoppingcart .commodity .com-item {
+            height: 220px;
+            position: relative;
+            border-bottom: 1px solid #f0efee;
+        }
+
+            .shoppingcart .commodity .com-item > li {
+                height: 100%;
+                font-size: 14px;
+            }
+
+            .shoppingcart .commodity .com-item .com-select {
+                position: absolute;
+                width: 36px;
+                height: 36px;
+                top: 50%;
+                margin-top: -18px;
+                display: block;
+                border-radius: 18px;
+                margin-left: 25px;
+                cursor: pointer;
+                line-height: 36px;
+                text-align: center;
+                color: #fff;
+                background-color: #fff;
+                font-size: 24px;
+                border: 1px solid #A4A9AD;
+            }
+
+                .shoppingcart .commodity .com-item .com-select.on {
+                    background-color: #df001f;
+                    border: 1px solid #df001f;
+                }
+
+            .shoppingcart .commodity .com-item .com-pic {
+                margin-left: 80px;
+            }
+
+                .shoppingcart .commodity .com-item .com-pic img {
+                    width: 180px;
+                    height: 180px;
+                    position: relative;
+                    top: 25px;
+                    float: right;
+                }
+
+            .shoppingcart .commodity .com-item .com-name, .shoppingcart .commodity .com-item .com-pice, .shoppingcart .commodity .com-item .com-total {
+                line-height: 220px;
+            }
+
+            .shoppingcart .commodity .com-item .com-name {
+                font-size: 14px;
+                color: red;
+            }
+
+            .shoppingcart .commodity .com-item .com-total {
+                color: red;
+            }
+
+            .shoppingcart .commodity .com-item .countcontrol {
+                width: 110px;
+                height: 30px;
+                border: 1px solid #e8e8e8;
+                position: relative;
+                top: 94px;
+                left: 5px;
+            }
+
+                .shoppingcart .commodity .com-item .countcontrol .countbtn {
+                    width: 30px;
+                    height: 30px;
+                    line-height: 30px;
+                    position: absolute;
+                    background-color: #fafafa;
+                    cursor: pointer;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+
+                .shoppingcart .commodity .com-item .countcontrol .subbtn {
+                    left: 0;
+                    border-right: 1px solid #d9dadc;
+                }
+
+                .shoppingcart .commodity .com-item .countcontrol .addbtn {
+                    right: 0;
+                    border-left: 1px solid #d9dadc;
+                }
+
+                .shoppingcart .commodity .com-item .countcontrol .countinput {
+                    width: 74px;
+                    height: 26px;
+                    margin: 0;
+                    line-height: 30px;
+                    border: 0;
+                    border: 0;
+                    outline: 0;
+                    text-align: center;
+                    padding: 0;
+                }
+
+            .shoppingcart .commodity .com-item .delcom {
+                position: absolute;
+                width: 22px;
+                height: 22px;
+                display: block;
+                right: 54px;
+                top: 97px;
+                cursor: pointer;
+                background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPAgMAAABGuH3ZAAAADFBMVEUAAACsrKysrKysrKyblLAqAAAABHRSTlMA6NP9fXv//wAAADNJREFUCNcljMENADAIAq8pjz4ZydE6egmN5jQKcOFg0oJhpTIV2IEm2HTr7X+rq6Pepjx4ZQMwGCnjkgAAAABJRU5ErkJggg==") no-repeat center;
+            }
+
+        .shoppingcart .commodity .com-privilege {
+            width: 990px;
+            margin: 0 auto;
+            padding: 50px 0 50px 55px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+            .shoppingcart .commodity .com-privilege ul {
+                width: 300px;
+            }
+
+                .shoppingcart .commodity .com-privilege ul > li {
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 14px;
+                }
+
+            .shoppingcart .commodity .com-privilege .com-pri-total {
+                position: relative;
+                height: 30px;
+                line-height: 30px;
+                width: 350px;
+                left: 500px;
+                top: -33px;
+                font-size: 14px;
+            }
+
+                .shoppingcart .commodity .com-privilege .com-pri-total .com-pir-total-yuan {
+                    float: left;
+                }
+
+                .shoppingcart .commodity .com-privilege .com-pri-total .com-pir-total-jie {
+                    float: right;
+                }
+
+    .shoppingcart .comalltotal {
+        height: 90px;
+        box-sizing: border-box;
+        margin-top: 40px;
+    }
+
+        .shoppingcart .comalltotal #comalltotal {
+            font-size: 16px;
+            float: right;
+            height: 40px;
+            line-height: 44px;
+            padding-right: 30px;
+        }
+
+        .shoppingcart .comalltotal .goappy {
+            float: right;
+            display: block;
+            width: 125px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 20px;
+            color: #fff;
+         
+            cursor: pointer;
+        }
+
+.niu-mask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    opacity: .8;
+    display: none;
+    z-index: 999;
+}
+
+.niu-dialog {
+    display: none;
+    position: fixed;
+    width: 270px;
+    height: auto;
+    bottom: 50%;
+    left: 50%;
+    margin-bottom: -95px;
+    margin-left: -185px;
+    padding: 50px 50px 40px;
+    background-color: #f0efee;
+    _position: absolute;
+    _clear: both;
+    _top: expression(eval(document.compatMode && document.compatMode=='CSS1Compat') ? documentElement.scrollTop +(documentElement.clientHeight-this.clientHeight) - 1 : document.body.scrollTop +(document.body.clientHeight-this.clientHeight) - 1);
+    z-index: 1000;
+}
+
+    .niu-dialog .niu-dialog-head {
+        font-size: 26px;
+        font-weight: 400;
+        text-align: center;
+        color: #5c6670;
+    }
+
+    .niu-dialog .niu-dialog-body {
+        padding: 30px 0;
+        text-align: center;
+        line-height: 20px;
+        color: #5c6670;
+    }
+
+    .niu-dialog .niu-dialog-foot {
+        margin-top: 5px;
+        font-size: 14px;
+    }
+
+        .niu-dialog .niu-dialog-foot .niu-dialog-confirm {
+            float: left;
+            width: 120px;
+            font-size: 14px;
+        }
+
+        .niu-dialog .niu-dialog-foot .niu-dialog-cancel {
+            float: right;
+            width: 120px;
+            font-size: 14px;
+        }
+
+    .niu-dialog .niu-dialog-close {
+        position: absolute;
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: url(//www.niucache.com/static/home/static/common/images/icon-x_b84ca108.png) no-repeat center;
+        cursor: pointer;
+        top: 10px;
+        right: 10px;
+    }
+
+.niu-radio {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+    margin: 4px;
+}
+
+    .niu-radio.niu-radio-red {
+        border: 1px solid red;
+    }
+
+        .niu-radio.niu-radio-red.niu-radio-select {
+            background-color: red;
+        }
+
+.niu-radio-text {
+    display: inline-block;
+    position: relative;
+    top: -6px;
+    left: 20px;
+}

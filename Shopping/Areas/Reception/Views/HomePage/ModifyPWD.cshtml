@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "修改密码";
+}
+<script type="text/javascript">
+    $(function () {
+        $("#alterPWD").click(function () {
+           var dd = "@ViewBag.pwd";
+            //验证密码
+           if(dd != $("#password").val()) {
+               $("#oldPWD").show();
+               return false;
+            }
+            //重复密码
+            if ($("#newsPWD").val() != $("#newsPWDS").val() || $("#newsPWDS").val()=="") {
+                $("#newRPWD").show();
+                return false;
+            }
+            $.post("@Url.Action("ModifyPWD")", { newPWD: $("#newsPWD").val()}, function (data) {
+                window.location = data;//跳到登录页
+            })
+        })
+        $("#oldPWD").click(function () {
+            $(this).hide();
+            $("#password").focus();
+        })
+        $("#newRPWD").click(function () {
+            $(this).hide();
+            $("#newsPWDS").focus();
+        })
+
+    });
+</script>
+<section class="content">
+    <article class="c-login">
+        <form method="post" action="/login" role="form" id="login_form">
+            <span class="niu-form-title">密码修改</span>
+            <input type="hidden" name="_csrf" value="">
+            <span class="niu-input niu-input-large niu-input-pwd">
+                <i></i>
+                <input type="password" id="password" name="password" placeholder="请输入旧密码" verify="numandstr:!" msg="密码格式不正确:请输入密码" value="">
+                
+                <div class="disabled-box " id="oldPWD">
+                    <span class="niu-disabled-icon"></span>
+                    <span class="niu-tipmsg niu-tipmsg-pwd" style="color:red">旧密码不正确</span>
+                </div>
+            </span>
+            <span class="niu-input niu-input-large niu-input-pwd">
+                <i></i>
+                
+                <input type="password" id="newsPWD" name="password" placeholder="请输入新密码" verify="numandstr:!" msg="密码格式不正确:请输入密码" value="">
+                
+                <div class="disabled-box " id="newPWD">
+                    <span class="niu-disabled-icon"></span>
+                    <span class="niu-tipmsg niu-tipmsg-pwd" style="color:red">新密码格式不正确</span>
+                </div>
+            </span>
+            <span class="niu-input niu-input-large niu-input-pwd">
+                <i></i>
+               
+                <input type="password" id="newsPWDS" name="password" placeholder="请再次输入新密码" verify="numandstr:!" msg="密码格式不正确:请输入密码" value="">
+                <div class="disabled-box " id="newRPWD">
+                    <span class="niu-disabled-icon"></span>
+                    <span class="niu-tipmsg niu-tipmsg-pwd" style="color:red">两次密码不一样</span>
+                </div>
+            </span>
+            <div class="slideVerify">
+                <input type="hidden" id="ip_tip" name="ip_tip" value="">
+            </div>
+
+        </form>
+        <button class="niu-btn niu-btn-large niu-btn-red" id="alterPWD">修改密码</button>
+        <div class="loginother clearfix">
+        </div>
+    </article>
+</section>
+<link href="~/Areas/Reception/Content/static/account/widget/login/pc/login_e450d63d.css" rel="stylesheet" />
+

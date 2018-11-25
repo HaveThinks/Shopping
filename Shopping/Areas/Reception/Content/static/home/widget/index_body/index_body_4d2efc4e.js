@@ -1,0 +1,1 @@
+define("home:widget/index_body/index_body.js",function(){});

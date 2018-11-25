@@ -1,0 +1,538 @@
+body {
+    min-width: 1400px;
+}
+.block {
+    position: relative;
+    width: 100%;
+}
+.block img {
+    display: block;
+    width: 100%;
+}
+/*第一张图片*/
+.block1{
+    background: url("../images/baoyang1-1.jpg") center center no-repeat;
+    height: 1300px;
+    width: 100%;
+    min-width: 1200px;
+    margin-top: -2px;
+}
+.block1-con {
+    position: absolute;
+    top: 38%;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    width: 574px;
+    left:50%;
+    margin-left: -287px;
+    line-height: 28px;
+}
+.block1-btn {
+    position: absolute;
+    top: 43%;
+    left: 41.7%;
+    width: 242px;
+    height: 36px;
+    border: 1px solid #df001f;
+    font-size: 14px;
+    color: #df001f;
+    text-align: center;
+    line-height: 36px;
+    border-radius: 18px;
+    cursor: pointer;
+}
+.block1-video {
+    position: relative;
+    left: 50%;
+    top: 58.7%;
+    width: 1062px;
+    height: 482px;
+    border: 6px solid #908c94;
+    margin-left: -531px;
+}
+.block1-video .videoBg{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.block1-video .vodeoBtn{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left:50%;
+    top:50%;
+    margin-top: -25px;
+    margin-left: -25px;
+}
+/*第二张图*/
+.block2 img{
+    width: 100%;
+}
+.block2-care {
+    position: absolute;
+    top: 36%;
+    left: 22%;
+    width: 38%;
+}
+.block2-care > p {
+    overflow: hidden;
+    width: 78%;
+    text-align: center;
+    line-height: 100%;
+}
+.block2-care > p > span {
+    float: left;
+    width: 100%;
+    font-family: Microsoft YaHei;
+    font-size: 12px;
+    color: #040404;
+}
+/*第三张图*/
+
+.block3{
+    width: 100%;
+    height: 1010px;
+    background:#f2f5f7;
+}
+.showCenter{
+    width:846px;
+    margin:0 auto 60px;
+    padding-top: 66px;
+    text-align: center;
+}
+
+.showCenter img{
+    width: 416px;
+    height: 48px;
+    margin:0 auto 26px;
+}
+.showCenter p{
+    font-size: 14px;
+    color:#040404;
+    line-height: 22px;
+}
+
+.showList{
+    width: 846px;
+    margin:0 auto 40px;
+}
+.showList dt{
+    width: 100%;
+    text-align: center;
+    font-weight:bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.showList dd{
+    float: left;
+    width: 152px;
+    height: 178px;
+    margin-right: 195px;
+    text-align: center;
+}
+.showList dd p{
+    font-size: 14px;
+    margin-top: 10px;
+}
+/*第四张图*/
+.block4 img{
+    width: 100%;
+}
+.block4-check {
+    position: absolute;
+    top: 49%;
+    left: 22.5%;
+    width: 31%;
+    font-size: 14px;
+    color: #df001f;
+}
+.block4-check > p {
+    overflow: hidden;
+    width: 90%;
+    height: 96%;
+    text-align: left;
+    line-height: 100%;
+}
+.block4-check > p > span {
+    float: left;
+    font-family: Microsoft YaHei;
+    font-size: 12px;
+    color: #fff;
+    margin-bottom: 6px;
+}
+.block4-btn {
+    position: absolute;
+    top: 70%;
+    left: 22.5%;
+    font-size: 14px;
+    color: #df001f;
+    cursor: pointer;
+}
+/*第五张图*/
+.block5 img{
+    width: 100%;
+}
+.block5-con {
+    position: absolute;
+    left: 20%;
+    top: 24%;
+    width: 59%;
+    height: 67%;
+}
+.block5-arrow {
+    position: absolute;
+    left: 7%;
+    top: 44px;
+    /*background: url("../images/baoyang5-arrow.png") no-repeat;*/
+    width:0px;
+    height:0px;
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-bottom:10px solid #a4a9ad;
+    font-size:0px;
+    line-height:0px;
+}
+.con-nav {
+    overflow: hidden;
+    width: 100%;
+    height: 36px;
+    margin-bottom: 18px;
+    border-radius: 5px;
+}
+.con-nav > li {
+    float: left;
+    width: 16.66666%;
+    height: 36px;
+    background-color: #a4a9ad;
+    text-align: center;
+    line-height: 36px;
+    font-size: 14px;
+    color: #040404;
+    cursor: pointer;
+}
+.con-nav .block5-select {
+    background: #5c6670;
+    color: #fff;
+}
+.con-wrap {
+    position: relative;
+    width: 100%;
+    height: 90%;
+}
+.con-wrap > div {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+}
+.con-wrap .block5-show {
+    display: block;
+}
+.con-wrap .con {
+    position: absolute;
+    top: 40%;
+    right: 5%;
+    width: 34%;
+    font-size: 12px;
+    line-height: 24px;
+    color: #fff;
+}
+/*第六张图*/
+.block6 img{
+    width: 100%
+}
+.block6-manage {
+    position: absolute;
+    top: 57%;
+    left: 22%;
+    width: 31%;
+    font-size: 14px;
+    color: #df001f;
+}
+.block6-manage > p {
+    overflow: hidden;
+    width: 90%;
+    height: 96%;
+    text-align: left;
+    line-height: 100%;
+}
+.block6-manage > p > span {
+    float: left;
+    margin-bottom: 10px;
+    font-family: Microsoft YaHei;
+    font-size: 12px;
+    color: #e5e3e3;
+}
+/*第七张图*/
+.block7-quancheng {
+    position: relative;
+    width: 1140px;
+    height: 643px;
+    margin: 0 auto;
+}
+.block7-quancheng img {
+    display: block;
+    width: 100%;
+}
+.quancheng {
+    position: absolute;
+    top: 74%;
+    left: 13%;
+    width: 14%;
+    height: 10%;
+}
+.quancheng > p {
+    overflow: hidden;
+    text-align: center;
+    line-height: 100%;
+}
+.quancheng > p > span {
+    float: left;
+    width: 100%;
+    margin-bottom: 2px;
+    font-family: Microsoft YaHei;
+    font-size: 14px;
+    color: #040404;
+}
+.fuwu {
+    position: absolute;
+    top: 74%;
+    left: 43%;
+    width: 15%;
+    height: 10%;
+}
+.fuwu > p {
+    overflow: hidden;
+    text-align: center;
+    line-height: 100%;
+}
+.fuwu > p > span {
+    float: left;
+    width: 100%;
+    margin-bottom: 2px;
+    font-family: Microsoft YaHei;
+    font-size: 14px;
+    color: #040404;
+}
+.huifang {
+    position: absolute;
+    top: 74%;
+    left: 75%;
+    width: 14%;
+    height: 10%;
+}
+.huifang > p {
+    overflow: hidden;
+    text-align: center;
+    line-height: 100%;
+}
+.huifang > p > span {
+    float: left;
+    width: 100%;
+    margin-bottom: 2px;
+    font-family: Microsoft YaHei;
+    font-size: 14px;
+    color: #040404;
+}
+/*第八张图*/
+.block8{
+    width: 100%;
+    height: 650px;
+    background: url("../images/baoyang8.jpg") center center no-repeat;
+    margin-bottom: -80px;
+}
+.block8-btn {
+    display: block;
+    width: 242px;
+    height: 36px;
+    border: 1px solid #fff;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    line-height: 36px;
+    border-radius: 18px;
+    cursor: pointer;
+    margin:56px auto 0;
+}
+.xiuzheng {
+    position: absolute;
+    top: 246px;
+    left: 50%;
+    width: 624px;
+    margin-left: -312px;
+    text-align: center;
+}
+.xiuzheng img{
+    margin: 0 auto 40px;
+}
+.xiuzheng > p {
+    overflow: hidden;
+    text-align: center;
+    font-size: 12px;
+    color:#fff;
+}
+.xiuzheng > .p1{
+    line-height: 24px;
+}
+.xiuzheng > .p1 > strong{
+    font-size: 13px;
+}
+.xiuzheng > .p2{
+    margin-top: 100px;
+    margin-bottom: 16px;
+}
+.xiuzheng > .p3 {
+    width: 124px;
+    padding-left: 232px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #fff;
+}
+.xiuzheng > .p4 {
+    width: 235px;
+    padding-left: 226px;
+    font-size: 14px;
+    color: #fff;
+}
+.xiuzheng > p > span {
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    font-family: Microsoft YaHei;
+    font-size: 14px;
+    color: #fff;
+}
+.xiuzheng > span {
+    display: block;
+    width: 100%;
+    font-family: Microsoft YaHei;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+}
+.overlay{
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    position: fixed;
+    left:0;
+    top:0;
+    z-index: 10;
+    display: none;
+}
+.showVideo{
+    display: none;
+    width: 786px;
+    height: 482px;
+    position: absolute;
+    left:50%;
+    top:768px;
+    z-index: 11;
+    margin-left: -393px;
+}
+
+#youkuplayer{
+    width: 786px;
+    height: 482px;
+}
+
+/* 二级导航*/
+.secondary_nav{
+    width:100%;
+    height: 56px;
+    position: absolute;
+    z-index: 10;
+    top:66px;
+    color: #fff;
+}
+.secondary_nav.active{
+    position: fixed;
+    top:0;
+    background:#000;
+    color:#000;
+    opacity: 0.9;
+    overflow: hidden;
+}
+
+
+.secondary_nav .secondary_cont{
+    height: 56px;
+    border-bottom:1px solid #f0efef;
+    width: 1140px;
+    margin:0 auto;
+}
+
+.secondary_nav .secondary_cont .baoyangLog{
+    float: left;
+    margin-left: 40px;
+    margin-top: 15px;
+}
+
+.secondary_nav .secondary_cont .fuwutiaokuanBorder{
+    float: right;
+    margin-left: 40px;
+    margin-top: 15px;
+    width: 364px;
+    height: 26px;
+    line-height: 26px;
+
+}
+
+.secondary_nav .secondary_cont .fuwutiaokuan{
+    float: right;
+    color: #fff;
+    font-size: 12px;
+    margin-right: 80px;
+}
+
+.secondary_nav .secondary_cont .yuyueniucare{
+    float: right;
+    width:142px;
+    height: 26px;
+    border:1px solid #fff;
+    border-radius: 10px;
+    color:#fff;
+    font-size: 12px;
+    line-height: 26px;
+    text-align: center;
+    margin-right: 62px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

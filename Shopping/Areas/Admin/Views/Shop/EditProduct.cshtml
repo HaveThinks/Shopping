@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null;
+}
+
+<script type="text/javascript">
+    $(function () {
+        var vaildate2 = false;
+
+        $("#ProductName").blur(function () {
+            var leng = $(this).val().length;
+            if (leng == 0) {
+                $("#re").css("display", "inline").focus();
+                vaildate2 = false;
+            }
+            else {
+                $("#re").css("display", "none").focus();
+                vaildate2 = true;
+            }
+        });
+
+        $("#sum1").click(function () {
+            var p = {
+                ProductID: $("#ProductID").val(),
+                ProductName: $("#name").val(),
+                Description: $("#des").val(),
+                Postage: $("#poe").val()
+            };
+                $.post("@Url.Action("EditProduct")",p, function (data) {
+                    //$("#myModal").modal("hide");
+                    //$("#table_id_example").dataTable().ajax.reload();
+                    if (data != null) {
+                        alert("修改成功！");
+                        location.reload();
+                    }
+                });
+        });
+    });
+</script>
+
+@foreach (Shopping.Models.Product item in ViewBag.product)
+{
+    <div class="from-group warning">
+        <label class="control-label" for="ProductName">商品ID</label>
+        @Html.TextBox("ProductID", item.ProductID, new { placeholder = "请输入商品ID", Class = "form-control" })
+        <span id="s1"></span>
+        <span style="display:none;color:red" id="account">请输入商品名称</span>
+
+    </div>
+    <div class="from-group warning">
+        <label class="control-label" for="ProductName">商品名称</label>
+        @Html.TextBox("name", item.ProductName, new { placeholder = "请输入商品名称", Class = "form-control" })
+        <span id="s1"></span>
+        <span style="display:none;color:red" id="account">请输入商品名称</span>
+
+    </div>
+    <div class="from-group warning">
+        <label class="control-label" for="ProductName">商品描述</label>
+        @Html.TextArea("des", item.Description, new { placeholder = "点击输入商品描述", Class = "form-control" })
+        <span id="s1"></span>
+        <span style="display:none;color:red" id="account">请输入商品描述（20字内）</span>
+    </div>
+    <div class="from-group warning">
+        <label class="control-label" for="ProductName">邮费</label>
+        @Html.TextBox("poe", item.Postage, new { placeholder = "请输入邮费(￥)", Class = "form-control" })
+        <span id="s1"></span>
+        <span style="display:none;color:red" id="account">请输入邮费</span>
+    </div>
+
+
+}

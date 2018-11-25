@@ -1,0 +1,447 @@
+﻿img:not([src]) {
+    visibility: hidden;
+}
+
+@-moz-document url-prefix() {
+    img:-moz-loading {
+        visibility: hidden;
+    }
+}
+
+.storeDetail {
+    position: relative;
+    min-height: 807px;
+    background: #fff;
+    background-image: -webkit-radial-gradient(circle farthest-corner at 100% 0,#f5f5f5,#fff 40%);
+    background-image: -moz-radial-gradient(circle farthest-corner at 100% 0,#f5f5f5,#fff 40%);
+    background-image: radial-gradient(circle farthest-corner at 100% 0,#f5f5f5,#fff 40%);
+}
+
+    .storeDetail .storeDetail-intro {
+        width: 1140px;
+        min-height: 655px;
+        padding: 95px 15px 60px;
+        margin: 0 auto;
+    }
+
+        .storeDetail .storeDetail-intro article {
+            float: left;
+            height: 655px;
+            width: 555px;
+        }
+
+        .storeDetail .storeDetail-intro .storeDetail-intro-options {
+            width: 495px;
+            min-height: 595px;
+            padding-left: 60px;
+            padding-top: 60px;
+            position: relative;
+            font-family: din,'PingFang SC','Helvetica Neue',Helvetica,'Hiragino Sans GB',STHeitiSC-Light,'Microsoft YaHei',Arial,sans-serif;
+        }
+
+            .storeDetail .storeDetail-intro .storeDetail-intro-options .name {
+                font-size: 24px;
+                color: #212121;
+                margin-bottom: 15px;
+            }
+
+            .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox {
+                width: 450px;
+                min-height: 270px;
+                padding-top: 15px;
+            }
+
+                .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .selectColor {
+                    margin-top: 26px;
+                    padding-bottom: 20px;
+                }
+
+                .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .countBox-price {
+                    line-height: 36px;
+                    font-size: 28px;
+                    color: #df001f;
+                }
+
+                    .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .countBox-price del {
+                        margin-right: 10px;
+                        color: #212121;
+                    }
+
+                .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .price {
+                    width: 100%;
+                    border-bottom: 1px solid #5d6771;
+                    padding-bottom: 10px;
+                }
+
+                    .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .price span {
+                        font-size: 55px;
+                        font-family: MyCustomFont,Verdana,Arial,sans-serif;
+                        color: #df001f;
+                    }
+
+                .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .selectOption {
+                    width: 450px;
+                    padding-bottom: 30px;
+                }
+
+                    .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .selectOption .optionTit {
+                        float: left;
+                        height: 40px;
+                        line-height: 40px;
+                        margin-right: 36px;
+                        font-size: 14px;
+                    }
+
+                .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .optionBorder {
+                    margin-top: 2px;
+                    width: 380px;
+                    float: left;
+                }
+
+                    .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .optionBorder dd {
+                        float: left;
+                        min-width: 36px;
+                        height: 36px;
+                        border-radius: 4px;
+                        border: solid 1px #d1d3d3;
+                        margin-right: 10px;
+                        margin-bottom: 10px;
+                        text-align: center;
+                        cursor: pointer;
+                        line-height: 20px;
+                        font-size: 14px;
+                        padding: 6px;
+                        color: #5c6670;
+                        box-sizing: border-box;
+                        -webkit-transition: border-color .2s ease-out;
+                        transition: border-color .2s ease-out;
+                    }
+
+                        .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .optionBorder dd img {
+                            display: block;
+                            width: 84px;
+                            height: 74px;
+                            margin: 0 auto;
+                        }
+
+                        .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .optionBorder dd p {
+                            text-align: center;
+                            width: 100%;
+                            font-size: 12px;
+                            margin-top: 4px;
+                        }
+
+                        .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .optionBorder dd:hover {
+                            border-color: #5c6670;
+                        }
+
+                        .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .optionBorder dd.active {
+                            border: solid 2px #5c6670;
+                            padding: 5px;
+                        }
+
+                .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .selectNum .selectNumTit {
+                    float: left;
+                    height: 40px;
+                    line-height: 40px;
+                    margin-right: 36px;
+                    font-size: 14px;
+                }
+
+                .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .selectNum .numBox {
+                    margin-top: 2px;
+                    width: 120px;
+                    height: 38px;
+                    border: 1px solid #d1d3d3;
+                    float: left;
+                    border-radius: 4px;
+                }
+
+                    .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .selectNum .numBox span {
+                        float: left;
+                        width: 39px;
+                        height: 38px;
+                        background: #e3e6e9;
+                        line-height: 36px;
+                        text-align: center;
+                        cursor: pointer;
+                    }
+
+                    .storeDetail .storeDetail-intro .storeDetail-intro-options .countBox .selectNum .numBox input {
+                        float: left;
+                        width: 40px;
+                        height: 36px;
+                        border: 0;
+                        text-align: center;
+                    }
+
+            .storeDetail .storeDetail-intro .storeDetail-intro-options .joinCarBtn {
+                width: 135px;
+                height: 36px;
+                line-height: 36px;
+                border-radius: 4px;
+                background-color: #df001f;  /*df001f*/
+                color: #fff;
+                text-align: center;
+                cursor: pointer;
+                position: relative;
+                margin-top: 30px;
+                margin-left: 60px;
+                -webkit-transition: all 200ms ease-out;
+                transition: all 200ms ease-out;
+            }
+
+                .storeDetail .storeDetail-intro .storeDetail-intro-options .joinCarBtn span {
+                    width: 18px;
+                    height: 18px;
+                    margin-right: 8px;
+                }
+
+                .storeDetail .storeDetail-intro .storeDetail-intro-options .joinCarBtn .flyCartImg {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    position: absolute;
+                    left: 40px;
+                    top: 0;
+                }
+
+                .storeDetail .storeDetail-intro .storeDetail-intro-options .joinCarBtn:hover {
+                    background-color: #e5334b;
+                    box-shadow: 0 10px 30px 0 rgba(0,0,0,.2);
+                }
+
+                .storeDetail .storeDetail-intro .storeDetail-intro-options .joinCarBtn:active {
+                    background-color: #df001f;
+                    box-shadow: 0 10px 30px 0 rgba(0,0,0,.2);
+                }
+
+                .storeDetail .storeDetail-intro .storeDetail-intro-options .joinCarBtn.disabled {
+                    cursor: pointer;
+                    background-color: #A4A9AD;
+                }
+
+            .storeDetail .storeDetail-intro .storeDetail-intro-options .storeDetail-intro-options-namedes {
+                margin-top: -40px;
+                color: #df001f;
+            }
+
+            .storeDetail .storeDetail-intro .storeDetail-intro-options .storeDetail-intro-options-tips {
+                width: 362px;
+                margin-top: 10px;
+                height: 60px;
+                font-size: 14px;
+                margin-left: 60px;
+                color: #5c6670;
+            }
+
+                .storeDetail .storeDetail-intro .storeDetail-intro-options .storeDetail-intro-options-tips .tips-title {
+                    font-weight: 700;
+                }
+
+                .storeDetail .storeDetail-intro .storeDetail-intro-options .storeDetail-intro-options-tips .storeDetail-outlink {
+                    margin-top: 20px;
+                    color: #df001f;
+                    position: relative;
+                }
+
+                    .storeDetail .storeDetail-intro .storeDetail-intro-options .storeDetail-intro-options-tips .storeDetail-outlink:before {
+                        position: absolute;
+                        right: -16px;
+                        font-size: 12px;
+                        top: 3px;
+                    }
+
+#details {
+    width: 100%;
+    min-width: 1200px;
+    height: auto;
+    margin-top: 80px;
+}
+
+    #details .miniNavBorder-innter {
+        width: 100%;
+        height: 40px;
+    }
+
+    #details .miniNavBorder {
+        width: 100%;
+        height: 50px;
+        background: #fff;
+        position: relative;
+        -webkit-transition: all 200ms ease-out;
+        transition: all 200ms ease-out;
+    }
+
+        #details .miniNavBorder .miniNav {
+            text-align: center;
+        }
+
+            #details .miniNavBorder .miniNav a {
+                color: #5c6670;
+                -webkit-transition: all 200ms ease-out;
+                transition: all 200ms ease-out;
+            }
+
+                #details .miniNavBorder .miniNav a:hover {
+                    color: #a4a9ad;
+                }
+
+            #details .miniNavBorder .miniNav li {
+                margin-top: 14px;
+                display: inline-block;
+                width: 196px;
+                height: 20px;
+                text-align: center;
+                cursor: pointer;
+            }
+
+                #details .miniNavBorder .miniNav li.active a {
+                    color: #a4a9ad;
+                }
+
+        #details .miniNavBorder.active {
+            position: fixed;
+            top: 0;
+        }
+
+    #details .content {
+        width: 100%;
+        height: auto;
+        min-height: 300px;
+    }
+
+        #details .content li {
+            text-align: center;
+            width: 100%;
+            display: none;
+            min-width: 1200px;
+        }
+
+            #details .content li p {
+                margin: 0;
+            }
+
+            #details .content li img {
+                max-width: 100%;
+                vertical-align: top;
+            }
+
+            #details .content li.active {
+                display: block;
+            }
+
+    #details .content2 {
+        height: 700px;
+        width: 100%;
+        background: #e4ebf0;
+    }
+
+    #details .content3 {
+        width: 1314px;
+        margin: 0 auto;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    #details .content4 {
+        height: 700px;
+        width: 100%;
+        background: #e4ebf0;
+    }
+
+    #details .content5 {
+        width: 1314px;
+        margin: 0 auto;
+        padding: 30px 0;
+    }
+
+    #details .content6 {
+        width: 1314px;
+        margin: 0 auto;
+        padding: 30px 0;
+    }
+
+    #details .content7 {
+        width: 1314px;
+        margin: 0 auto;
+        padding: 30px 0;
+    }
+
+    #details .content8 {
+        width: 100%;
+    }
+
+        #details .content8 img {
+            vertical-align: middle;
+        }
+
+.niu-mask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    opacity: .8;
+    z-index: 1000;
+    display: none;
+}
+
+.niu-dialog {
+    display: none;
+    position: absolute;
+    width: 450px;
+    height: 236px;
+    top: 50%;
+    left: 50%;
+    margin-top: -173px;
+    margin-left: -280px;
+    border-radius: 5px;
+    padding: 55px;
+    background-color: #fff;
+    z-index: 1000;
+}
+
+    .niu-dialog .niu-dialog-head {
+        font-size: 26px;
+        font-weight: 400;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .niu-dialog .niu-dialog-body {
+        padding: 30px 45px;
+        text-align: center;
+        line-height: 20px;
+    }
+
+    .niu-dialog .niu-dialog-foot {
+        height: 55px;
+        margin-top: 20px;
+        padding: 0 10px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+        .niu-dialog .niu-dialog-foot .niu-dialog-confirm {
+            width: 200px;
+            font-size: 14px;
+        }
+
+        .niu-dialog .niu-dialog-foot .niu-dialog-cancel {
+            float: right;
+            width: 200px;
+            font-size: 14px;
+        }
+
+    .niu-dialog .niu-dialog-close {
+        position: absolute;
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: url(//store.niucache.com/static/store/static/common/images/icon-x_b84ca108.png) no-repeat center;
+        cursor: pointer;
+        top: 10px;
+        right: 10px;
+    }

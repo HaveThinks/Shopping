@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.4 (17249) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-done</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="4.-填写订单" sketch:type="MSArtboardGroup" transform="translate(-503.000000, -327.000000)" fill="#DF001F">
+            <path d="M503,331.995253 C503,329.236451 505.236038,327 507.995253,327 L518.004747,327 C520.763549,327 523,329.236038 523,331.995253 L523,342.004747 C523,344.763549 520.763962,347 518.004747,347 L507.995253,347 C505.236451,347 503,344.763962 503,342.004747 L503,331.995253 Z M511.470713,338.57512 L507.82161,335.290551 C507.441012,334.947973 506.823941,334.947973 506.443343,335.290551 C506.062745,335.633128 506.062745,336.188555 506.443343,336.531132 L510.771898,340.427278 C511.152496,340.769855 511.769567,340.769855 512.150165,340.427278 L519.556657,333.760673 C519.937255,333.418095 519.937255,332.862668 519.556657,332.520091 C519.176059,332.177514 518.558988,332.177514 518.17839,332.520091 L511.470713,338.57512 Z" id="icon-done" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

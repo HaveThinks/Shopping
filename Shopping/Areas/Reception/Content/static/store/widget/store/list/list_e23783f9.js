@@ -1,0 +1,1 @@
+define("store:widget/store/list/list.js",function(e){e("common:widget/slider/unslider.js"),{init:function(){$(".shopStore-slider").unslider({sliderName:"shopStore-kv",speed:685,autoplay:!0,delay:5e3,infinite:!0,arrows:!1,nav:function(){return""}})}}.init()});

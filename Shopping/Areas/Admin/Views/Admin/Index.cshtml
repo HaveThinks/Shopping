@@ -1,0 +1,151 @@
+﻿@model IEnumerable<Shopping.Models.Admin>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var vaildate1 = false;
+        var vaildate2 = false;
+        var vaildate3 = false;
+
+        $("#AdminName").blur(function () {
+            var ss = $(this).val().length;
+            if (ss < 4 || ss > 10) {
+                $("#account1").css("display", "inline").focus();
+                vaildate1 = false;
+            }
+            else {
+                $.get("CheckNames?AdminName=" + $(this).val(), null, function (data) {
+                    console.log(data)
+                    if (data == "ok") {
+                        $("#account2").css("display", "none").focus();
+                        vaildate = true;
+                    }
+                    else {
+                        $("#account2").css("display", "inline").focus();
+                        vaildate1 = false;
+                    }
+                });
+                $("#account1").css("display", "none").focus();
+                vaildate1 = true;
+            }
+        });
+        $("#AdminPWD").blur(function () {
+            var leng = $(this).val().length;
+            if (leng < 6 || leng > 9) {
+                $("#re").css("display", "inline").focus();
+                vaildate2 = false;
+            }
+            else {
+                $("#re").css("display", "none").focus();
+                vaildate2 = true;
+            }
+        });
+
+        $("#RPass").blur(function () {
+            if ($(this).val() != $("#AdminPWD").val() || $("#AdminPWD").val() == "") {
+                $("#RAdminPWD").css("display", "inline").focus();
+                vaildate3 = false;
+            }
+            else {
+                $("#RAdminPWD").css("display", "none").focus();
+                vaildate3 = true;
+            }
+        });
+        $("#sum").click(function () {
+            if (vaildate1 == true || vaildate2 == true || vaildate3 == true) {
+                var mydate = new Date();
+            var myTime = mydate.toLocaleString();//获取日期和时间
+            var p = {
+                AdminName: $("#AdminName").val(),
+                AdminPWD: $("#AdminPWD").val()
+            };
+            $.post("@Url.Action("CheckName")", p, function (data) {
+                if (data=="ok") {
+                    $.post("@Url.Action("AddAdmin")", p, function (data) {
+                //$("#myModal").modal("hide");
+                //$("#assets-data-table").dataTable().ajax.reload();
+                if (data != null) {
+                    alert("添加成功");
+                    location.reload();
+                }
+                
+            });
+                }
+                else {
+                    alert("用户名已经存在！");
+                }
+            })
+            }  
+        });
+     });
+   
+        
+
+</script>
+
+<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">添加管理员</button>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">添加管理员</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="AdminName"><span class="glyphicon glyphicon-user"></span>账户</label>
+                    @Html.TextBox("AdminName", null, new { placeholder = "输入账号", Class = "form-control" })
+                    <span id="s1"></span>
+                    <span style="display:none;color:red" id="account1">请输入4-10位账号</span>
+                    <span style="display:none;color:red" id="account2">账号已被使用</span>
+                </div>
+                <div class="form-group">
+                    <label for="AdminPWD"><span class="glyphicon glyphicon-lock"></span>密码</label>
+                    @Html.Password("AdminPWD", null, new { placeholder = "输入6-8位密码", Class = "form-control" })
+                    <span id="s2"></span>
+                    <span style="display:none;color:red;" id="re">密码长度在6-8位</span>
+                </div>
+                <div class="form-group">
+                    <label for="RPass"><span class="glyphicon glyphicon-lock"></span>重复密码</label>
+                    @Html.Password("RPass", null, new { placeholder = "输入确认密码", Class = "form-control" })
+                    <span id="s3"></span>
+                    <span style="display:none;color:red;" id="RAdminPWD">两次密码不一样</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="sum">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary" id="list-panel">
+            <div class="panel-heading">
+                <h1 class="panel-title">管理员列表</h1>
+            </div>
+            <div class="panel-body">
+                <table id="assets-data-table" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>管理员名称</th>
+                            <th>time</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var asset in Model)
+                        {
+                            <tr>
+                                <td>@asset.AdminID.ToString()</td>
+                                <td>@asset.AdminName</td>
+                                <td><span class="btn-success">@asset.CreateTime</span></td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

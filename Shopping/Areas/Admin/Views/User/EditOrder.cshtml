@@ -1,0 +1,79 @@
+﻿@{
+                
+
+                Layout = null;
+}
+<script type="text/javascript">
+    $(function () {
+        $("#btadd").click(function () {
+            var p = {
+                OrderID: $("#OrderID").val(),
+                OrderMoney: $("#OrderMoney").val(),
+                Postage: $("#Postage").val(),
+                Express: $("#Express").val(),
+                OrderState: $("#OrderState").val()
+                };
+                $.post("@Url.Action("EditOrder")", p, function (data) {
+                    $("#myModal").modal("hide");
+                    alert("修改成功！");
+                    $("#table_id_example").DataTable().ajax.reload();
+                    //if (data != null) {
+                    //    location.reload();
+                    //}
+                });
+        })
+    });
+</script>
+
+@foreach (Shopping.Models.Order item in ViewBag.order)
+{
+
+    <div class="form-group">
+        <label class="control-label" for="OrderMoney">金额</label>
+        @Html.TextBox("OrderMoney", item.OrderMoney, new { placeholder = ".00$", @class = "form-control", @min = "0", @max = "1000" })
+        <span id="s3"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="AddressInfo">送货地址</label>
+        @Html.TextBox("AddressInfo", item.AddressInfo, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="InvoiceName">抬头名称</label>
+        @Html.TextBox("InvoiceName", item.InvoiceName, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="InvoiceType">抬头类型</label>
+        @Html.TextBox("InvoiceType", item.InvoiceType, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="Postage">运费</label>
+        @Html.TextBox("Postage", item.Postage, new { placeholder = ".00$", @class = "form-control", @min = "0", @max = "1000" })
+        <span id="s4"></span>
+        <span style="display:none;color:red;" id="re2">运费不能为空</span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="Express">快递公司</label>
+        @Html.TextBox("Express", item.Express, new { @class = "form-control", PlaceHolder = "输入快递公司" })
+        <span style="display:none;color:red;" id="re3">快递公司不能为空</span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="ExpressNumber">快递单号</label>
+        @Html.TextBox("ExpressNumber", item.ExpressNumber, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="OrderState">订单状态</label>
+        <select class="form-control" id="OrderState" name="OrderState" data-rel="chosen" data-placeholder="选择订单状态">
+            <option>@item.OrderState</option>
+            @if (item.OrderState != "已发货")
+            {
+                <option>已发货</option>
+            }
+            else
+            {
+                <option>超时关闭</option>
+            }
+        </select>
+    </div>
+
+}
+

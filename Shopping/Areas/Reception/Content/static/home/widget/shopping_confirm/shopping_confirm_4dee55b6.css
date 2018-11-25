@@ -1,0 +1,724 @@
+.hide {
+	display: none
+}
+
+.shopping-address {
+	width: 1200px;
+	margin: 0 auto 40px;
+	border: 1px solid #d1d3d3;
+	border-radius: 5px;
+	clear: both;
+	box-sizing: border-box
+}
+
+.shopping-address .title {
+	height: 40px;
+	background-color: #d1d3d3;
+	line-height: 40px;
+	font-size: 14px;
+	text-align: center;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	color: #5c6670
+}
+
+.shopping-address .title .title_meaasge {
+	box-sizing: border-box;
+	width: 700px;
+	border-right: 1px solid #fff;
+	float: left;
+	text-align: left;
+	padding-left: 30px
+}
+
+.shopping-address .title .title_price {
+	width: 200px;
+	border-right: 1px solid #fff;
+	float: left
+}
+
+.shopping-address .title .title_num {
+	width: 97px;
+	border-right: 1px solid #fff;
+	float: left
+}
+
+.shopping-address .title .title_total {
+	width: 190px;
+	float: left
+}
+
+.shopping-address .niu-btn.onselect {
+	border: 1px solid red;
+	color: red
+}
+
+.shopping-address .confirm-content {
+	padding: 25px 105px 50px;
+	font-size: 14px
+}
+
+.shopping-address .confirm-content span {
+	color: #5c6670
+}
+
+.shopping-address .confirm-content #J_additem {
+	color: #df001f;
+	font-size: 16px
+}
+
+.shopping-address .confirm-content .confirm-input {
+	border: 1px solid #d1d3d3;
+	border-radius: 5px;
+	outline: 0;
+	width: 296px;
+	height: 36px;
+	padding-left: 20px;
+	font: 14px/1.5 'PingFang SC', 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', STHeitiSC-Light, 'Microsoft YaHei', Arial, sans-serif;
+	color: #5c6670
+}
+
+.shopping-address .confirm-content .confrim-content-title {
+	font-size: 16px;
+	margin-top: 30px;
+	margin-bottom: 20px
+}
+
+.shopping-address .confirm-content .confrim-content-title .additem {
+	float: right
+}
+
+.shopping-address .confirm-content .confrim-content-title .red {
+	float: right;
+	color: #df001f
+}
+
+.shopping-address .confirm-content .addaddress {
+	display: none;
+	border: 1px dashed #E7E6E4;
+	margin-bottom: 25px;
+	border-radius: 5px
+}
+
+.shopping-address .confirm-content .addaddress .address-block {
+	width: 256px;
+	height: 170px;
+	padding: 45px 20px 0;
+	float: left
+}
+
+.shopping-address .confirm-content .addaddress .address-block dl {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%
+}
+
+.shopping-address .confirm-content .addaddress .address-block dl>dt,
+.shopping-address .confirm-content .addaddress .address-block dl dd {
+	height: 40px;
+	margin-bottom: 15px;
+	float: left;
+	line-height: 40px;
+	font-size: 12px
+}
+
+.shopping-address .confirm-content .addaddress .address-block dl>dt {
+	width: 60px;
+	padding: 0 10px;
+	text-align: right
+}
+
+.shopping-address .confirm-content .addaddress .address-block dl>dd {
+	width: 176px
+}
+
+.shopping-address .confirm-content .addaddress .address-block dl>dd input {
+	padding: 0 10px;
+	border-radius: 5px;
+	border: 1px solid #f0efee;
+	outline: 0;
+	height: 38px;
+	width: 156px
+}
+
+.shopping-address .confirm-content .addaddress .address-block dl>dd input[type=checkbox] {
+	width: auto;
+	height: auto;
+	padding: 0;
+	border: 0;
+	border-radius: none
+}
+
+.shopping-address .confirm-content .addaddress .address-block dl .clearBlock {
+	width: 0;
+	padding: 0
+}
+
+.shopping-address .confirm-content .addaddress .addressOprationBtn {
+	clear: both;
+	height: 40px;
+	padding: 0 0 10px;
+	text-align: center
+}
+
+.shopping-address .confirm-content .addaddress .addressOprationBtn .niu-btn {
+	margin: 0
+}
+
+.shopping-address .confirm-content .addaddress .addressOprationBtn .niu-btn-middle {
+	color: #fff;
+	width: 120px;
+	height: 40px;
+	margin: 0 10px;
+	transition: background-color .2s ease-out;
+	-webkit-transition: background-color .2s ease-out
+}
+
+.shopping-address .confirm-content .addaddress .addressOprationBtn .modaddressbtngroup {
+	display: none
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m {
+	width: 326px;
+	padding: 45px 15px 0
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m>dl>dd {
+	width: 246px;
+	position: relative
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m>dl>dd .address-select i {
+	display: block;
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 7px solid #a4a9ad;
+	position: absolute;
+	right: 8px;
+	top: 16px
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m>dl>dd ul {
+	position: absolute;
+	width: 118px;
+	height: auto;
+	max-height: 200px;
+	top: 40px;
+	margin: 0 20px 0 0;
+	padding: 0;
+	border: 1px solid #f0efee;
+	z-index: 100;
+	overflow: auto;
+	background-color: #fff;
+	display: none
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m>dl>dd ul>li {
+	margin: 0;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	cursor: pointer
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m>dl>dd ul>li:hover {
+	background-color: #eaeaea
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m>dl>dd .province-content {
+	left: 0
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m>dl>dd .city-content {
+	left: 128px
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m>dl>dd .street-content {
+	width: 246px;
+	left: 0
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m>dl>dd span {
+	width: 118px;
+	display: inline-block;
+	height: 100%;
+	position: relative
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m>dl>dd span input {
+	width: 97px;
+	height: 38px;
+	padding: 0 10px;
+	margin: 0
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m>dl>dd .select-city {
+	float: right
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m>dl>dd .select-street {
+	width: 100%
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m>dl>dd .select-street input {
+	width: 226px
+}
+
+.shopping-address .confirm-content .addaddress .editaddress-m>dl>dd input {
+	width: 226px
+}
+
+.shopping-address .confirm-content .addressbox {
+	position: relative;
+	overflow: hidden;
+	min-height: 230px;
+	padding-bottom: 10px;
+	box-sizing: border-box
+}
+
+.shopping-address .confirm-content .addressbox .addressitem:nth-child(3n-1) {
+	margin-left: 19px;
+	margin-right: 19px
+}
+
+.shopping-address .confirm-content .addressbox .open-btn {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding-right: 15px;
+	font-size: 16px;
+	background: url(images/arrow-down_b4eff2e7.png) no-repeat right center
+}
+
+.shopping-address .confirm-content .addressbox .open-btn.opened {
+	background: url(images/arrow-up_46cd1c2e.png) no-repeat right center
+}
+
+.shopping-address .confirm-content .addressbox .addressitem {
+	width: 264px;
+	height: 180px;
+	padding: 25px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid #f0efee;
+	float: left;
+	margin-bottom: 25px;
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+	color: #5c6670
+}
+
+.shopping-address .confirm-content .addressbox .addressitem img {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 40px
+}
+
+.shopping-address .confirm-content .addressbox .addressitem p {
+	font-size: 14px;
+	margin: 20px 0;
+	overflow: hidden;
+	height: 18px;
+	line-height: 20px
+}
+
+.shopping-address .confirm-content .addressbox .addressitem hr {
+	color: #d2d1d1;
+	border: 0;
+	border-top: 1px solid #d1d3d3;
+	margin: 10px 0
+}
+
+.shopping-address .confirm-content .addressbox .addressitem .btngroup {
+	position: absolute;
+	width: 295px;
+	height: 20px;
+	bottom: 20px;
+	right: 13px;
+	text-align: right
+}
+
+.shopping-address .confirm-content .addressbox .addressitem .btngroup span {
+	margin: 0 10px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	position: relative
+}
+
+.shopping-address .confirm-content .addressbox .addressitem .btngroup .deladdressbtn {
+	background: url(images/icon-x_46465e77.png) no-repeat center
+}
+
+.shopping-address .confirm-content .addressbox .addressitem .btngroup .modaddressbtn {
+	background: url(images/icon-edit_8f770c23.png) no-repeat center
+}
+
+.shopping-address .confirm-content .addressbox .addressitem .btngroup .modaddressbtn:after {
+	content: '|';
+	display: inline-block;
+	color: #C7C9CA;
+	position: absolute;
+	left: 30px;
+	font-size: 12px;
+	top: 5px
+}
+
+.shopping-address .confirm-content .addressbox .addressitem.onselect {
+	background: #f0efee url(images/right_296b5527.png) no-repeat right bottom;
+	background: #f0efee linear-gradient(transparent, transparent), url(images/red_f34811d1.svg)
+}
+
+.shopping-address .confirm-content .addressbox .addressitem.onselect .onselect {
+	background-color: red
+}
+
+.shopping-address .confirm-content .addressbox .addaddressitem {
+	width: 264px;
+	height: 180px;
+	border-radius: 5px;
+	border: 1px dashed #E7E6E4;
+	float: left;
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+	background: url(images/add_33d7fa21.png) no-repeat center
+}
+
+.shopping-address .confirm-content .kuaidi {
+	color: #a4a9ad
+}
+
+.shopping-address .confirm-content .confirm-coupon {
+	height: 42px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none
+}
+
+.shopping-address .confirm-content .confirm-coupon .confirm-coupon-select {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	position: relative;
+	width: 310px;
+	height: 38px;
+	float: left;
+	margin-right: 25px
+}
+
+.shopping-address .confirm-content .confirm-coupon .confirm-coupon-select i {
+	width: 17px;
+	height: 10px;
+	position: absolute;
+	right: 10px;
+	top: 15px;
+	background: url(images/icon-downarrow_37abcdcf.png) no-repeat center
+}
+
+.shopping-address .confirm-content .confirm-coupon .confirm-coupon-select .coupon-content {
+	display: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	top: 38px;
+	width: 311px;
+	min-height: 84px;
+	background-color: #fff;
+	border: 1px solid #d1d3d3;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	z-index: 100
+}
+
+.shopping-address .confirm-content .confirm-coupon .confirm-coupon-select .coupon-content .couponlist {
+	margin: 0;
+	width: 311px;
+	max-height: 131px;
+	min-height: 38px;
+	overflow-y: auto;
+	background-color: #fff
+}
+
+.shopping-address .confirm-content .confirm-coupon .confirm-coupon-select .coupon-content .couponlist>li:hover {
+	background-color: #a4a9ad
+}
+
+.shopping-address .confirm-content .confirm-coupon .confirm-coupon-select .coupon-content .couponlist>li {
+	list-style: none;
+	height: 18px;
+	line-height: 18px;
+	margin: 0;
+	padding: 10px 40px 10px 10px;
+	cursor: pointer
+}
+
+.shopping-address .confirm-content .confirm-coupon .confirm-coupon-select .coupon-content .couponlist .cartexpipydate {
+	float: right;
+	font-size: 12px;
+	color: #d1d3d3
+}
+
+.shopping-address .confirm-content .confirm-coupon .confirm-coupon-select .coupon-content .couponadd {
+	background-color: #f0efee;
+	height: 36px;
+	width: 301px;
+	padding: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px
+}
+
+.shopping-address .confirm-content .confirm-coupon .confirm-coupon-select .coupon-content .couponadd .couponinput {
+	width: 200px;
+	height: 34px
+}
+
+.shopping-address .confirm-content .confirm-coupon .confirm-coupon-select .coupon-content .couponadd .checkcoupon {
+	margin-top: 0;
+	width: 70px;
+	height: 36px;
+	line-height: 36px;
+	color: #fff;
+	float: right
+}
+
+.shopping-address .confirm-content .confirm-coupon .couponcard {
+	width: 115px;
+	height: 36px;
+	padding-top: 2px;
+	float: left
+}
+
+.shopping-address .confirm-content .line2 {
+	clear: both;
+	color: #d2d1d1;
+	border: 0;
+	border-top: 1px dashed #d1d3d3;
+	margin: 30px 0 10px
+}
+
+.shopping-address .confirm-content .fapiao {
+	overflow: auto
+}
+
+.shopping-address .confirm-content .fapiao p {
+	height: 40px;
+	font-size: 14px;
+	line-height: 40px;
+	margin: 20px 0
+}
+
+.shopping-address .confirm-content .fapiao .dianzifapiao,
+.shopping-address .confirm-content .fapiao .putongfapiao {
+	margin-left: 60px;
+	margin-bottom: 20px
+}
+
+.shopping-address .confirm-content .fapiao .taitou {
+	height: 45px;
+	color: #5c6670
+}
+
+.shopping-address .confirm-content .fapiao .fapiaobtn {
+	display: inline-block;
+	width: 145px;
+	height: 40px;
+	border: 1px solid #d1d3d3;
+	text-align: center;
+	border-radius: 5px;
+	margin: 0 10px;
+	cursor: pointer
+}
+
+.shopping-address .confirm-content .fapiao .fapiaobtn.onselect {
+	background-color: #f0efee;
+	border-color: #f0efee
+}
+
+.shopping-address .cartBox {
+	position: relative;
+	padding: 0 0 200px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px
+}
+
+.shopping-address .cartBox .cartItem {
+	height: 220px;
+	border-bottom: 1px solid #f0efee
+}
+
+.shopping-address .cartBox .cartItem>li {
+	float: left;
+	list-style: none;
+	text-align: center;
+	color: #5c6670;
+	font-size: 14px
+}
+
+.shopping-address .cartBox .cartItem .cartItem-img {
+	width: 220px;
+	height: 100%;
+	margin-left: 80px
+}
+
+.shopping-address .cartBox .cartItem .cartItem-img img {
+	height: 180px;
+	width: 180px;
+	position: relative;
+	top: 25px;
+	left: 40px;
+	float: left
+}
+
+.shopping-address .cartBox .cartItem .cartItem-price {
+	width: 201px;
+	line-height: 220px
+}
+
+.shopping-address .cartBox .cartItem .cartItem-num {
+	width: 97px;
+	line-height: 220px
+}
+
+.shopping-address .cartBox .cartItem .cartItem-totalprice {
+	width: 190px;
+	line-height: 220px
+}
+
+.shopping-address .cartBox .cartItem .cartItem-name {
+	height: 100%;
+	width: 400px
+}
+
+.shopping-address .cartBox .cartItem .cartItem-name .cartItem-name-c {
+	height: 40px;
+	margin-top: 88px;
+	margin-left: 100px;
+	text-align: left
+}
+
+.shopping-address .cartBox .cartItem .cartItem-name .cartItem-name-c .subhead {
+	color: #a4a9ad;
+	font-size: 12px
+}
+
+.shopping-address .cartBox .cartItem .cartItem-name .cartItem-name-c p {
+	line-height: 20px;
+	font-size: 14px
+}
+
+.shopping-address .cartBox .cartItem .com-name-special {
+	width: 480px
+}
+
+.shopping-address .cartBox .cartItem .com-name-special i {
+	float: left;
+	margin-left: 40px;
+	margin-top: 80px;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background-image: url(images/special-icon_6d92b6b4.png);
+	background-image: linear-gradient(transparent, transparent), url(images/special-icon_1d7a672e.svg)
+}
+
+.shopping-address .cartBox .cartItem .com-name-special p {
+	width: 60%;
+	text-align: left;
+	margin-left: 100px
+}
+
+.shopping-address .cartBox .cartItem .com-name-special .special {
+	margin-top: 84px;
+	margin-bottom: 5px;
+	color: #212121
+}
+
+.shopping-address .cartBox .time {
+	width: 90px;
+	height: 90px;
+	border: 3px solid #df001f;
+	border-radius: 50%;
+	position: absolute;
+	left: 15px;
+	top: 15px;
+	text-align: center;
+	color: #df001f;
+	font-size: 14px;
+	line-height: 21px
+}
+
+.shopping-address .cartBox .time .time_word {
+	color: #7f7f7f;
+	margin-top: 24px
+}
+
+.shopping-address .cartBox .cartBox-bottom {
+	position: absolute;
+	right: 40px;
+	bottom: 17px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #212121
+}
+
+.shopping-address .cartBox .cartBox-bottom span {
+	display: inline-block;
+	margin-top: 15px;
+	margin-right: 50px
+}
+
+.shopping-address .cartBox .cartBox-bottom .total {
+	width: 200px;
+	float: right;
+	color: #212121
+}
+
+.shopping-address .cartBox .cartBox-bottom .total p {
+	margin: 15px
+}
+
+.shopping-address .cartBox .cartBox-bottom .total .yingfujine {
+	color: #df001f;
+	font-size: 16px;
+	font-weight: 600
+}
+
+.goapply {
+	position: relative;
+	width: 1200px;
+	margin: 0 auto;
+	height: 70px;
+	cursor: pointer
+}
+
+.goapply .total-content {
+	height: 55px;
+	line-height: 70px;
+	float: right;
+	margin-right: 300px
+}
+
+.goapply .total-content span {
+	margin: 0 20px
+}
+
+.goapply .total-content .yingfujine {
+	color: #df001f;
+	font-size: 20px
+}
+
+.goapply .niu-btn {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 200px
+}

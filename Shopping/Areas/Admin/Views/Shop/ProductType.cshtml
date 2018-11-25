@@ -1,0 +1,33 @@
+﻿@{ 
+    Layout = null;
+}
+@model IEnumerable<Shopping.Models.Product>
+<div class="form-horizontal">
+    <div class="from-group">
+        <label class="control-label" for="TypeName">类型名称</label>
+        @Html.TextBox("TypeName", null, new { placeholder = "请输入类型名称", Class = "form-control" })
+        <span id="s1"></span>
+        <span style="display:none;color:red" id="account1">请输入类型名称</span>
+
+    </div>
+    <div class="from-group">
+        <label class="control-label" for="Description">类型描述</label>
+        @Html.TextArea("Description", null, new { placeholder = "点击输入类型描述", Class = "form-control" })
+        <span id="s2"></span>
+        <span style="display:none;color:red" id="account2">请输入类型描述（50字内）</span>
+    </div>
+    <div class="from-group">
+        <label class="control-label" for="ProductName">商品</label>
+        <div class="controls">
+            <select id="ProductID" data-rel="chosen" data-placholder="选择所属商品">
+                @foreach (Shopping.Models.Product item in ViewBag.product)
+                {
+                    <option value="@item.ProductID">@item.ProductName</option>
+                }
+            </select>
+        </div>
+        <span id="s3"></span>
+        <span style="display:none;color:red" id="account3">选择所属商品</span>
+    </div>
+</div>
+

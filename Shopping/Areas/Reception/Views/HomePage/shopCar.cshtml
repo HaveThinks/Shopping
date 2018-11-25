@@ -1,0 +1,106 @@
+﻿@if (ViewBag.customerID == null)
+{
+    <div class="collapse cart-collapse-empty">
+        <div class="cart-collapse-conten emptyCont">
+            <p class="nogoods">你的购物车是空的！去选购商品吧</p>
+        </div>
+    </div>
+}
+else
+{
+    if (ViewBag.count != 0)
+    {
+        <div class="collapse cart-collapse">
+            <div class="cart-slider">
+                <div class="cart-collapse-slid cart-slider-horizontal" style="position:relative; overflow:hidden;" id="uu">
+                    <ul class="cart-slider-wrap cart-slider-carousel" style="width:100%;left:0%;" id="shopCar">
+                        @foreach (Shopping.Areas.Reception.Models.ShopCC item in ViewBag.shop)
+                        {
+                            var img = item.IMG;
+                            var xj = int.Parse(item.Price) * int.Parse(item.Count);
+
+                            <li class="cart-collapse-slid-content cart-slider-active">
+                                <div class="cart-collapse-item">
+                                    <img src="@img" />
+                                </div>
+                                <div class="cart-collapse-item-options description">
+                                    <p>@item.TypeName</p>
+                                    <span></span>
+                                </div>
+                                <div class="cart-collapse-item-options price">
+                                    <p>单价</p>
+                                    <span id="price" xj="@xj">@item.Price</span>元
+                                </div>
+                                <div class="cart-collapse-item-options quantity">
+                                    <p>数量</p>
+                                    <span>@item.Count</span>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                @if (ViewBag.count > 2)
+                {
+                    <a class="cart-collapse-arrow icon-cirle next" state="1"><span class="icon-right"></span></a>
+                    <a class="cart-collapse-arrow icon-cirle prev" state="1"><span class="icon-left"></span></a>
+                }
+            </div>
+            <div class="cart-collapse-bottom">
+                <a class="goCart" href="@Url.Action("ShopCar","ShopCar")">去购物车结算</a>
+                <p id="hj">合计249元</p>
+                <p>共计<span id="Qtity">1</span>件商品</p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="collapse cart-collapse-empty">
+            <div class="cart-collapse-content emptyCont">
+                <p class="nogoods">你的购物车是空的！去选购产品吧</p>
+            </div>
+        </div>
+    }
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var zj = 0;
+        $("#div.prrice span").each(function () {
+            zj = parseInt(zj) + parseInt($(this).attr("xj"));
+        })
+        var quantity = 0;
+        $("div.quantity span").each(function () {
+            quantity = parseInt(quantity) + parseInt($(this).text());
+        })
+        $("#Qtity").text(quantity);
+        $("#hj").text("合计" + zj + "元");
+
+        var lis = $("ul#shopCar li").length;
+        var ll = parseInt(lis) / 2;
+        if (parseInt(lis) % 2 != 0) {
+            ll = parseInt(ll) + 1;
+        }
+        var widths = 1170 * parseInt(ll);
+
+        $("#shopCar").width(widths + "px");
+
+        $(".prev").click(function () {
+            if ($(this).attr("state") != 1) {
+                var nt = $(this).attr("state");
+                var sta = parseInt(nt) - 1;
+                $(this).attr("state", sta);
+                $(".next").attr("state", sta);
+                $("ul#shopCar").animate({ "left": "+=" + "1170px" }, 1200);
+            }
+        });
+        $(".next").click(function () {
+            if ($(this).attr("state") != ll) {
+                var nt = $(this).attr("state");
+                var sta = parseInt(nt) + 1;
+                $(this).attr("state", sta);
+                $(".prev").attr("state", sta);
+                $("ul#shopCar").animate({ "left": "-=" + "1170px" }, 1200);
+            }
+        });
+    });
+</script>

@@ -1,0 +1,66 @@
+﻿@{
+    Layout = null;
+}
+
+<script type="text/javascript">
+    $(function () {
+        var vaildate2 = false;
+
+        $("#ProductName").blur(function () {
+            var leng = $(this).val().length;
+            if (leng == 0) {
+                $("#re").css("display", "inline").focus();
+                vaildate2 = false;
+            }
+            else {
+                $("#re").css("display", "none").focus();
+                vaildate2 = true;
+            }
+        });
+
+        $("#sum1").click(function () {
+                var p = {
+                    ProductID: $("#ProductID").val(),
+                    ProductName: $("#ProductName").val(),
+                    Description: $("#Description").val(),
+                    Postage: $("#Postage").val()
+                };
+                $.post("@Url.Action("EditProduct")", p, function (data) {
+                    //$("#myModal").modal("hide");
+                    //$("#table_id_example").dataTable().ajax.reload();
+                    if (data != null) {
+                        location.reload();
+                    }
+                });
+        });
+    });
+</script>
+
+@foreach (Shopping.Models.Product item in ViewBag.product)
+{
+
+    <div class="form-group">
+        <label style="float:left" for="ProductID"><span class="glyphicon glyphicon-user"></span>商品编号</label>
+        @Html.TextBox("ProductID", item.ProductID, new { Class = "form-control", @readonly = "readonly" })
+        <span id="s1"></span>
+    </div>
+    <div class="form-group">
+        <label style="float:left" for="ProductName"><span class="glyphicon glyphicon-user"></span>商品名称</label>
+        @Html.TextBox("ProductName", item.ProductName, new { placeholder = "输入商品名称", Class = "form-control" })
+        <span id="s1"></span>
+        <span style="display:none;color:red;" id="re">请输入商品名称</span>
+    </div>
+    <div class="form-group">
+        <label style="float:left" for="Description"><span class="glyphicon glyphicon-lock"></span>商品描述</label><br />
+        @Html.TextArea("Description", item.Description, new { placeholder = "点击输入描述（20字以内）", @class = " input-xlarge span12", @rovs = "2", @style = "width:100%;height:100px;" })
+        <span id="s2"></span>
+        <span style="display:none;color:red;" id="re">请输入商品的描述（20字以内）</span>
+    </div>
+    <div class="form-group">
+        <label style="float:left" for="Postage"><span class="glyphicon glyphicon-lock"></span>邮费</label>
+        @Html.TextBox("Postage", item.Postage, new { placeholder = ".00$", @class = "form-control", @min = "0", @max = "500" })
+        <span id="s2"></span>
+    </div>
+
+
+}

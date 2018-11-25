@@ -1,0 +1,81 @@
+﻿<script type="text/javascript">
+    //function fn() {
+    //    var time = new Date();
+    //    var str = "";
+    //    var div = document.getElementById("time");
+    //    var hour = document.getElementById("hours");
+    //    //    console.log(time);
+    //    var year = time.getFullYear();
+    //    var mon = time.getMonth() + 1;
+    //    var day = time.getDate();
+    //    var h = time.getHours();
+    //    var m = time.getMinutes();
+    //    var s = time.getSeconds();
+    //    var week = time.getDay();
+    //    switch (week) {
+    //        case 0: week = "日";
+    //            break;
+    //        case 1: week = "一";
+    //            break;
+    //        case 2: week = "二";
+    //            break;
+    //        case 3: week = "三";
+    //            break;
+    //        case 4: week = "四";
+    //            break;
+    //        case 5: week = "五";
+    //            break;
+    //        case 6: week = "六";
+    //            break;
+    //    }
+    //    str = year + "年" + totwo(mon) + "月" + totwo(day) + "日" + "&nbsp;" + totwo(h) + ":" + totwo(m) + ":" + totwo(s) + "&nbsp;" + "星期" + week;
+    //    div.innerHTML = str;
+    //    if (h < 6) {
+    //        hour.innerHTML = "凌晨好";
+    //    } else if (h < 12) {
+    //        hour.innerHTML = "上午好";
+    //    } else if (h < 15) {
+    //        hour.innerHTML = "中午好";
+    //    } else if (h < 18) {
+    //        hour.innerHTML = "下午好";
+    //    } else if (h < 21) {
+    //        hour.innerHTML = "傍晚好";
+    //    } else {
+    //        hour.innerHTML = "深夜好";
+    //    }
+    //}
+    //fn();
+    //setInterval(fn, 1000);
+    //function totwo(n) {
+    //    if (n <= 9) {
+    //        return n = "0" + n;
+    //    }
+    //    else {
+    //        return n = "" + n;
+    //    }
+    //}
+    var t = null;
+    t = setTimeout(time, 1000);//开始执行
+    function time() {
+        clearTimeout(t);//清除定时器
+        dt = new Date();
+        var h = dt.getHours();
+        var m = dt.getMinutes();
+        var s = dt.getSeconds();
+        document.getElementById("time").innerHTML = "现在的时间为：" + h + "时" + m + "分" + s + "秒";
+        t = setTimeout(time, 1000); //设定定时器，循环执行             
+    } 
+</script>
+<footer class="btm-ft">
+    <p class="clear">
+        <span class="fl">©Copyright 2018 <a href="#" title="DeathGhost" target="_blank">DeathGhost.cn</a></span>
+        <span class="fr text-info">
+            <em class="uppercase">
+                <i class="icon-user"></i>
+                author:deathghost
+            </em> |
+            <span id="time">2015年1月1日 11:11  星期一</span>
+            <a onclick="reciprocate()" class="text-primary"><i class="icon-qrcode"></i>捐赠</a>
+        </span>
+    </p>
+</footer>

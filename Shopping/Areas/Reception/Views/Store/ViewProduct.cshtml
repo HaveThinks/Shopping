@@ -1,0 +1,130 @@
+﻿@using Shopping.Areas.Reception.Models;
+
+<link rel="stylesheet" href="~/Areas/Reception/Content/static/common/common_99ddccb1.css" />
+<link rel="stylesheet" href="~/Areas/Reception/Content/static/store/widget/store/list/list_c6790aea.css" />
+<link rel="stylesheet" href="~/Areas/Reception/Content/static/store/widget/store/list/widget/productCard1/productCard1_8611a340.css" />
+<link rel="stylesheet" href="~/Areas/Reception/Content/static/store/widget/store/list/widget/productCard3/productCard3_4e3ea62d.css" />
+<link rel="stylesheet" href="~/Areas/Reception/Content/static/store/widget/store/list/widget/productCard2/productCard2_92d4a31b.css" />
+<section class="shopStore">
+    <article class="shopStore-slider">
+        <ul>
+            <li class="gridBox-link shopStore-kv-3" data-type="link" data-target="https://store.niu.com/detail/52"></li>
+            <li class="gridBox-link shopStore-kv-4" data-type="link" data-target="https://store.niu.com/hcbattery"></li>
+        </ul>
+    </article>
+    <article class="shopStore-escooter">
+        <div class=" shopStore-escooter-title">
+            <p class="shopStore-escooter-title-b">小牛电动</p>
+            <p class="shopStore-escooter-title-m">E-Scooter</p>
+        </div>
+        <div class="shopStore-escooter-products">
+            <a href="https://store.niu.com/buy/m1" target="_blank">
+                <div class="shopStore-escooter-products-m1">
+                    <div class="shopStore-escooter-products-img">
+                        <img src="~/Areas/Reception/Content/static/store/widget/store/list/images/M1__e46436ce.jpg">
+                    </div>
+                    <div class="shopStore-escooter-products-des">
+                        <span class="shopStore-escooter-products-des-name">小牛电动M1</span>
+                        <span class="shopStore-escooter-products-des-price">3299起</span>
+                        <ul class="shopStore-escooter-products-des-color">
+                            <li class="icon-circle white"></li>
+                            <li class="icon-circle yellow"></li>
+                            <li class="icon-circle red"></li>
+                            <li class="icon-circle blue"></li>
+                            <li class="icon-circle gray"></li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+            <a href="https://store.niu.com/n1s/" target="_blank">
+                <div class="shopStore-escooter-products-n1">
+                    <div class="shopStore-escooter-products-img">
+                        <img src="~/Areas/Reception/Content/static/store/widget/store/list/images/N1_58c04fdf.jpg">
+                    </div>
+                    <div class="shopStore-escooter-products-des">
+                        <span class="shopStore-escooter-products-des-name">小牛电动N1S</span>
+                        <span class="shopStore-escooter-products-des-price">4999起</span>
+                        <ul class="shopStore-escooter-products-des-color">
+                            <li class="icon-circle white"></li>
+                            <li class="icon-circle red"></li>
+                            <li class="icon-circle blue"></li>
+                            <li class="icon-circle gray"></li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </article>
+    <article class="shopStore-productList">
+        <div class="shopStore-productList-content">
+            <div class="shopStore-productList-categoryTitle">
+                <span class="shopStore-productList-title1">新品上架</span><span class="shopStore-productList-title2">New Arrivals</span>
+            </div>
+            <div class="shopStore-productList-category">
+                @foreach ( Stores item in ViewBag.newp)
+                {
+                    var id = item.SID;
+                    var bb = item.IMG;
+                    var name = "";
+                    if (item.TypeName.Length>18)
+                    {
+                        name = item.TypeName.Substring(0, 16) + "...";
+                    }
+                    else
+                    {
+                        name = item.TypeName;
+                    }
+                    <a href="@Url.Action("Detail","ShopDetail")?id=@id" target="_blank">
+                        <div class="widget-productCard1">
+                            <div class="widget-productCard1-img">
+                                <img src="~/Areas/Reception/Content/static/product/plus/@bb"/>
+                            </div>
+                            <div class="widget-productCard1-des">
+                                <p class="widget-productCard1-desL">@name</p>
+                                <p class="widget-productCard1-desM">@item.Description</p>
+                                <span>￥@item.Price</span>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+            <div class="shopStore-productList-categoryTitle">
+                <span class="shopStore-productList-title1">小牛周边</span><span class="shopStore-productList-title2">NIU Accessories</span>
+            </div>
+            <div class="shopStore-productList-category">
+                @foreach (Stores item in ViewBag.oldP)
+                {
+                    var id = item.SID;
+                    var bb = item.IMG;
+                    var name = "";
+                    if (item.TypeName.Length > 18)
+                    {
+                        name = item.TypeName.Substring(0, 16) + "...";
+                    }
+                    else
+                    {
+                        name = item.TypeName;
+                    }
+                <a href="@Url.Action("Detail","ShopDetail")?id=@id" target="_blank">
+                    <div class="widget-productCard1">
+                        <div class="widget-productCard1-img">
+                            <img src="~/Areas/Reception/Content/static/product/plus/@bb" />
+                        </div>
+                        <div class="widget-productCard1-des">
+                            <p class="widget-productCard1-desL">@name</p>
+                            <p class="widget-productCard1-desM">@item.Description</p>
+                            <span>￥@item.Price</span>
+                        </div>
+                    </div>
+                </a>
+                }
+            </div>
+        </div>
+    </article>
+</section>
+<div class="video-mask hide"></div>
+<div class="video-content hide">
+    <embed class="video-content-embed" src="" quality="high" width="1140" height="640" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+    <span class="icon-cross video-content-close"></span>
+</div>
+

@@ -1,0 +1,420 @@
+﻿
+@model Shopping.Models.Address
+
+@if (Model != null)
+{
+    string[] areas = Model.Areas.Split('省');
+    string province = areas[0];
+    string[] temp = areas[1].Split('市');
+    string city = temp[0];
+    string street = temp[1];
+    <div class="address-block">
+        <dl>
+            <dt>姓名*</dt>
+            <dd><input type="text" autocomplete="off" placeholder="请填写收货人姓名" id="AddressName" value="@Model.AddressName" verify="zhenname:!" msg="请输入2-15位的汉字或英文字母:请输入收货人姓名"></dd>
+            <dt>手机号*</dt>
+            <dd><input type="text" autocomplete="off" placeholder="请填写收货人手机号" id="Tel" value="@Model.Tel" verify="mobiletel:!" msg="请输入正确的手机号:请输入手机号"></dd>
+            <dt>固定电话</dt>
+            <dd><input type="text" autocomplete="off" placeholder="请填写收货人固定电话" id="Phone" value="@Model.Phone" verify="phone" msg="请输入正确的固定电话"></dd>
+        </dl>
+    </div>
+    <div class="address-block editaddress-m">
+        <dl>
+            <dt>所在地区*</dt>
+            <dd class="sele-area">
+                <span id="J_province" class="address-select select-province">
+                    <input class="sele-input-province" type="text" autocomplete="off" value="@province" readonly placeholder="省份/自治区" id="province_show" verify="str:!" msg="请选择省份/自治区:请选择省份/自治区"><i></i>
+                </span>
+                <span id="J_city" class="address-select select-city">
+                    <input class="sele-input-city" type="text" autocomplete="off" value="@city" readonly placeholder="城市/地区" id="city_show" verify="str:!" msg="请选择城市/地区:请选择城市/地区"><i></i>
+                </span>
+                <ul class="addcon province-content"></ul>
+                <ul class="addcon city-content"></ul>
+            </dd>
+            <dt></dt>
+            <dd class="sele-area">
+                <span id="J_street" class="address-select select-street">
+                    <input class="sele-input-street" type="text" autocomplete="off" value="@street" readonly placeholder="区/县" id="street_show" verify="str:!" msg="请选择区/县:请选择区/县"><i></i>
+                </span>
+                <ul class="addcon street-content"></ul>
+            </dd>
+            <dt>详细地址*</dt>
+            <dd>
+                <input placeholder="请填写收货人详细地址" id="AddressInfo" value="@Model.AddressInfo" verify="addressline:!" msg="请正确填写详细地址,并且不能超过40个字符:请填写收货人详细地址" />
+            </dd>
+        </dl>
+    </div>
+    <div class="address-block">
+        <dl>
+            <dt>邮政编码</dt>
+            <dd>
+                <input type="text" autocomplete="off" placeholder="请填写邮政编码" id="Postcode" value="@Model.Postcode" verify="postcode" msg="请填写正确的邮政编码">
+            </dd>
+            <dt>地址标签</dt>
+            <dd>
+                <input type="text" autocomplete="off" placeholder="如“家”、“公司”" id="AddressType" value="@Model.AddressType" verify="addresstag" msg="">
+            </dd>
+            <dt>设为默认</dt>
+            <dd>
+                @if (@Model.IsDefault == true)
+                {
+                    <input type="checkbox" autocomplete="off" id="IsDefault" checked="checked">
+                }
+                else
+                {
+                    <input type="checkbox" autocomplete="off" id="IsDefault">
+                }
+
+            </dd>
+        </dl>
+    </div>
+    <div class="addressOprationBtn">
+        <span id="J_canceladdaddressbtn" class="niu-btn niu-btn-gray niu-btn-middle">取消</span>
+        <span id="J_modaddressbtn" class="niu-btn niu-btn-red niu-btn-middle modaddressbtngroup" style="display:inline-block;" adressid="@Model.AddressID">修改地址</span>
+        <span id="J_addaddressbtn" class="niu-btn niu-b tn-red niu-btn-middle addaddressbtngroup" style="display:none;">添加地址</span>
+    </div>
+}
+else
+{
+    <div class="address-block">
+        <dl>
+            <dt>姓名*</dt>
+            <dd><input type="text" autocomplete="off" placeholder="请填写收货人姓名" id="AddressName" name="AddressName" verify="zhenname:!" msg="请输入2-15位的汉字或英文字母:请输入收货人姓名"></dd>
+            <dt>手机号*</dt>
+            <dd><input type="text" autocomplete="off" placeholder="请填写收货人手机号" id="Tel" name="Tel" verify="mobiletel:!" msg="请输入正确的手机号:请输入手机号"></dd>
+            <dt>固定电话</dt>
+            <dd><input type="text" autocomplete="off" placeholder="请填写收货人固定电话" id="Phone" name="Phone" verify="phone" msg="请输入正确的固定电话"></dd>
+        </dl>
+    </div>
+    <div class="address-block editaddress-m">
+        <dl>
+            <dt>所在地区*</dt>
+            <dd class="sele-area">
+
+                <span id="J_province" class="address-select select-province">
+                    <input class="sele-input-province" type="text" autocomplete="off" readonly placeholder="省份/自治区" id="province_show" verify="str:!" msg="请选择省份/自治区:请选择省份/自治区">
+                    <i></i>
+                </span>
+
+
+                <span id="J_city" class="address-select select-city">
+                    <input class="sele-input-city" type="text" autocomplete="off" readonly placeholder="城市/地区" id="city_show" verify="str:!" msg="请选择城市/地区:请选择城市/地区"><i></i>
+                </span>
+
+                <ul class="addcon province-content"></ul>
+                <ul class="addcon city-content"></ul>
+            </dd>
+            <dt></dt>
+            <dd class="sele-area">
+                <span id="J_street" class="address-select select-street">
+                    <input class="sele-input-street" type="text" autocomplete="off" readonly placeholder="区/县" id="street_show" verify="str:!" msg="请选择区/县:请选择区/县"><i></i>
+                </span>
+                <ul class="addcon street-content"></ul>
+            </dd>
+
+            <dt>详细地址*</dt>
+            <dd>
+                <input placeholder="请填写收货人详细地址" id="AddressInfo" name="AddressInfo" verify="addressline:!" msg="请正确填写详细地址,并且不能超过40个字符:请填写收货人详细地址" />
+            </dd>
+        </dl>
+    </div>
+    <div class="address-block">
+        <dl>
+            <dt>邮政编码</dt>
+            <dd>
+                <input type="text" autocomplete="off" placeholder="请填写邮政编码" id="Postcode" name="Postcode" verify="postcode" msg="请填写正确的邮政编码">
+            </dd>
+            <dt>地址标签</dt>
+            <dd>
+                <input type="text" autocomplete="off" placeholder="如“家”、“公司”" id="AddressType" name="AddressType" verify="addresstag" msg="">
+            </dd>
+            <dt>设为默认</dt>
+            <dd>
+                <input type="checkbox" autocomplete="off" id="IsDefault">
+            </dd>
+        </dl>
+    </div>
+    <div class="addressOprationBtn">
+        <span id="J_canceladdaddressbtn" class="niu-btn niu-btn-gray niu-btn-middle">取消</span>
+        <span id="J_modaddressbtn" class="niu-btn niu-btn-red niu-btn-middle modaddressbtngroup" style="display:none;">修改地址</span>
+        <span id="J_addaddressbtn" class="niu-btn niu-b tn-red niu-btn-middle addaddressbtngroup" style="display:inline-block;">添加地址</span>
+    </div>
+}
+
+
+<div class="niuDialog-mask show" style="display:none;" id="one"></div>
+<div class="niuDialog alert show" style="display:none;" id=two>
+    <div class="niuDialog-head"></div>
+    <div class="niuDialog-body">
+
+    </div>
+    <div class="niuDialog-foot">
+        <span class="niuDialog-leftBtn ">
+            确定
+        </span>
+        <span class="niuDialog-rightBtn ">
+            取消
+        </span>
+    </div>
+</div>
+
+
+
+
+<script>
+
+    $(function () {
+        //取消
+        $("#J_canceladdaddressbtn").click(function () {
+            $(".addressbox").show();
+            $(".addaddress").hide();
+        });
+
+        $(".niuDialog-leftBtn").click(function () {
+            $("#one,#two").css("display", "none");
+        })
+
+        //添加地址
+        $("#J_addaddressbtn").click(function () {
+            if ($("#AddressName").val() == "") {
+                $("#one,#two").css("display", "block");
+                $(".niuDialog-body").text("请输入收货人姓名");
+                return false;
+            }
+            else if ($("#Tel").val().trim().length != 11 || isNaN($("#Tel").val())) {
+                $("#one,#two").css("display", "block");
+                $(".niuDialog-body").text("请输入正确的电话号码");
+                return false;
+            }
+            else if ($("#province_show").val() == "" || $("#city_show").val() == "" || $("#street_show").val() == "") {
+                $("#one,#two").css("display", "block");
+                $(".niuDialog-body").text("地区不能为空");
+                return false;
+            }
+            else if ($("#AddressInfo").val() == "") {
+                $("#one,#two").css("display", "block");
+                $(".niuDialog-body").text("详细地址不能为空");
+
+                return false;
+            } else {
+                var isCheck = false;
+                if (document.getElementById("IsDefault").checked == true) {
+                    isCheck = true;
+                } else {
+                    isCheck = false;
+                }
+                var p = {
+                    AddressName: $("#AddressName").val(),
+                    Tel: $("#Tel").val(),
+                    AddressInfo: $("#AddressInfo").val(),
+                    Postcode: $("#Postcode").val(),
+                    IsDefault: isCheck,
+                    AddressType: $("#AddressType").val(),
+                    Phone: $("#Phone").val(),
+                    Areas: $("#province_show").val() + "省" + $("#city_show").val() + "市" + $("#street_show").val()
+                }
+                $.post("@Url.Action("AddAdress")", p, function (data) {
+                    $("#J_addressbox").html(data);     //添加后重新加载这部分，这个JS代码没效果  待解决
+                    $(".addressbox").show();
+                    $(".addaddress").hide();
+                })
+            }
+        });
+
+        //修改
+        $("#J_modaddressbtn").click(function () {
+
+            if ($("#AddressName").val() == "") {
+                $("#one,#two").css("display", "block");
+                $(".niuDialog-body").text("请输入收货人姓名");
+                return false;
+            }
+            else if ($("#Tel").val().trim().length != 11 || isNaN($("#Tel").val())) {
+                $("#one,#two").css("display", "block");
+                $(".niuDialog-body").text("请输入正确的电话号码");
+                return false;
+            }
+            else if ($("#province_show").val() == "" || $("#city_show").val() == "" || $("#street_show").val() == "") {
+                $("#one,#two").css("display", "block");
+                $(".niuDialog-body").text("地区不能为空");
+                return false;
+            }
+            else if ($("#AddressInfo").val() == "") {
+                $("#one,#two").css("display", "block");
+                $(".niuDialog-body").text("详细地址不能为空");
+                return false;
+            } else {
+
+                var isCheck = false;
+                if (document.getElementById("IsDefault").checked == true) {
+                    isCheck = true;
+                } else {
+                    isCheck = false;
+                }
+                var p = {
+                    AddressID: $(this).attr("adressID"),
+                    AddressName: $("#AddressName").val(),
+                    Tel: $("#Tel").val(),
+                    AddressInfo: $("#AddressInfo").val(),
+                    Postcode: $("#Postcode").val(),
+                    IsDefault: isCheck,
+                    AddressType: $("#AddressType").val(),
+                    Phone: $("#Phone").val(),
+                    Areas: $("#province_show").val() + "省" + $("#city_show").val() + "市" + $("#street_show").val()
+                }
+                $.post("@Url.Action("UpdateAdress")", p, function (data) {
+                    $("#J_addressbox").html(data);     //添加后重新加载这部分，这个JS代码没效果  待解决
+                    $(".addressbox").show();
+                    $(".addaddress").hide();
+                })
+            }
+
+        });
+
+
+
+
+        //选择省份   span标签没有失焦事件  消失不了带解决
+        $("#J_province").click(function () {
+            $(".province-content").css("display", "inline-block");     //显示省份
+            $("ul.province-content li").focus();  //ul聚焦不了
+        });
+
+        $(".ul.province-content li").blur(function () {
+            alert("OK");
+            $(this).css("display", "none");     //显示省份
+        })
+
+
+
+        //选择市
+        $("#J_city").click(function () {
+            if ($("#province_show").val() == "") {
+                $(".province-content").css("display", "inline-block");  //先选择省
+            } else {
+
+                $(".city-content").css("display", "inline-block");
+            }
+        })
+
+
+
+
+
+        //选择区
+        $("#J_street").click(function () {
+            if ($("#province_show").val() == "") {
+                $(".province-content").css("display", "inline-block");  //先选择省
+            } else if ($("#province_show").val() == "") {
+                $(".city-content").css("display", "inline-block");  //再选择市
+            } else {
+                $(".street-content").css("display", "inline-block");
+            }
+        })
+    })
+
+
+    $(document).ready(function () {
+        var city;
+        var leng;
+        var ciLength;
+        $.get("/Content/WriteInfo/CityJon.txt", function (data) {
+            city = eval(data);
+            leng = city.length;    //省份长度
+            //city[0].city[0].name  市
+            $(".province-content").html("");
+            //循环省
+            for (var i = 0; i < parseInt(leng) ; i++) {
+                $(".province-content").append('<li class="hide" style="display: list-item;"  data-country="CN">' + city[i].name + '</li>');
+            };
+
+            //修改的时候加载市
+            if ($("#province_show").val() != "") {
+                var name = $("#province_show").val();
+                for (var j = 0; j < parseInt(leng) ; j++) {
+                    if (city[j].name == name) {      //找到你选择的省份
+                        ciLength = city[j].city.length;  //**市长度
+                        //循环市
+                        for (var i = 0; i < parseInt(ciLength) ; i++) {
+                            $(".city-content").append('<li class="hide" style="display: list-item;"  data-country="CN">' + city[j].city[i].name + '</li>');
+                        }
+                    }
+                }
+            }
+
+            //修改的时候 需要加载区
+            if ($("#city_show").val() != "") {
+                for (var j = 0; j < parseInt(leng) ; j++) {
+                    if (city[j].name == $("#province_show").val()) {      //属于那个省
+                        //循环市
+                        for (var i = 0; i < parseInt(ciLength) ; i++) {
+                            if (city[j].city[i].name == $("#city_show").val()) {   //属于那个市
+                                var area = city[j].city[i].area.length; //区的长度
+                                for (var m = 0; m < parseInt(area) ; m++) {
+                                    $(".street-content").append('<li class="hide" style="display: list-item;"  data-country="CN">' + city[j].city[i].area[m] + '</li>');
+                                }
+                            }
+                        }
+                    }
+                };//for
+            };//if
+
+        })//get
+
+
+
+
+        //确定省
+        $(".editaddress-m").on("click", "ul.province-content li", function () {
+            $(".province-content").css("display", "none");  //选择省隐藏
+            $("#province_show").val($(this).text());         //赋值文本框
+            $(".city-content").html("");
+            $("#city_show").val("");
+            $(".street-content").html("");
+            $("#street_show").val("");
+
+            for (var j = 0; j < parseInt(leng) ; j++) {
+                if (city[j].name == $(this).text()) {      //找到你选择的省份
+                    ciLength = city[j].city.length;  //**市长度
+                    //循环市
+                    for (var i = 0; i < parseInt(ciLength) ; i++) {
+                        $(".city-content").append('<li class="hide" style="display: list-item;"  data-country="CN">' + city[j].city[i].name + '</li>');
+                    }
+                }
+            }
+        });
+
+
+
+
+        //确定市
+        $(".editaddress-m").on("click", "ul.city-content li", function () {
+            $(".city-content").css("display", "none");
+            $("#city_show").val($(this).text());
+            $(".street-content").html("");
+            $("#street_show").val("");
+            for (var j = 0; j < parseInt(leng) ; j++) {
+                if (city[j].name == $("#province_show").val()) {      //属于那个省
+                    //循环市
+                    for (var i = 0; i < parseInt(ciLength) ; i++) {
+                        if (city[j].city[i].name == $(this).text()) {   //属于那个市
+                            var area = city[j].city[i].area.length; //区的长度
+                            for (var m = 0; m < parseInt(area) ; m++) {
+                                $(".street-content").append('<li class="hide" style="display: list-item;"  data-country="CN">' + city[j].city[i].area[m] + '</li>');
+                            }
+                        }
+                    }
+                }
+            };
+
+        });
+
+
+        //确定区
+        $(".editaddress-m").on("click", "ul.street-content li", function () {
+            $(".street-content").css("display", "none");
+            $("#street_show").val($(this).text());
+
+        });
+    })
+</script>

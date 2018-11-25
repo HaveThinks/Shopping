@@ -1,0 +1,327 @@
+body {
+	background-color: #f6f6f6
+}
+
+.myOrder {
+	width: 1140px;
+	margin: 50px auto;
+	min-height: 500px;
+	padding-bottom: 100px;
+	position: relative;
+	overflow: auto
+}
+
+.myOrder .userPanel {
+	position: relative;
+	width: 220px;
+	padding-top: 55px;
+	float: left
+}
+
+.myOrder .address-wrap {
+	position: relative;
+	float: left;
+	/*width: 880px;*/
+	margin-left: 40px
+}
+
+.myOrder .address-wrap .head {
+	height: 55px;
+	border-bottom: 1px solid #e0e1e1;
+	text-align: center;
+	line-height: 55px;
+	font-size: 18px
+}
+
+.myOrder .address-wrap .body {
+	min-height: 455px
+}
+
+.myOrder .address-wrap .body .tip {
+	height: 60px;
+	line-height: 60px;
+	font-size: 16px;
+	color: #a4a9ad
+}
+
+.myOrder .address-wrap .body .addressbox {
+	box-sizing: border-box;
+	overflow: auto;
+	min-height: 230px
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem {
+	position: relative;
+	box-sizing: border-box;
+	float: left;
+	overflow: hidden;
+	width: 280px;
+	height: 170px;
+	margin-bottom: 25px;
+	padding: 25px;
+	border: 1px solid #f0efee;
+	border-radius: 5px;
+	color: #5c6670;
+	background: #fff
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem:nth-child(3n-1) {
+	margin-left: 20px;
+	margin-right: 20px
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem .set-default-btn {
+	display: none;
+	position: absolute;
+	width: 55px;
+	height: 20px;
+	right: 25px;
+	border: 1px solid #d1d3d3;
+	background: #fff;
+	line-height: 20px;
+	text-align: center;
+	font-size: 12px;
+	color: #a4a9ad;
+	transition: all .1s
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem .set-default-btn:hover {
+	transform: scale(1.1)
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem .fullname {
+	display: block;
+	height: 24px;
+	padding-left: 35px;
+	background: url(images/user_ddb3db73.jpg) no-repeat 0 center
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem hr {
+	color: #d2d1d1;
+	border: 0;
+	border-top: 1px solid #d1d3d3;
+	margin: 10px 0
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem p {
+	font-size: 14px;
+	overflow: hidden;
+	height: 20px;
+	line-height: 20px
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem .addressInfo {
+	overflow: hidden;
+	height: 60px;
+	padding-left: 35px;
+	background: url(images/location_4605854d.jpg) no-repeat 0 4px;
+	word-break: break-all
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem .addressInfo span {
+	opacity: 0
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem .phone {
+	padding-left: 35px;
+	background: url(images/phone_d05fb67e.jpg) no-repeat 0 center
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem .btngroup {
+	display: none;
+	position: absolute;
+	bottom: 18px;
+	right: 0;
+	padding-right: 20px
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem .btngroup span {
+	display: block;
+	float: right;
+	width: 20px;
+	height: 20px;
+	margin-left: 10px;
+	transition: all .1s;
+	cursor: pointer
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem .btngroup span:hover {
+	transform: scale(1.2)
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem .btngroup .deladdressbtn {
+	background: url(images/icon-x_46465e77.png) no-repeat center
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem .btngroup .modaddressbtn {
+	background: url(images/icon-edit_8f770c23.png) no-repeat center
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem:hover .btngroup,
+.myOrder .address-wrap .body .addressbox .addressitem:hover .set-default-btn {
+	display: block
+}
+
+.myOrder .address-wrap .body .addressbox .addressitem.onselect {
+	background: #fff url(images/default_e0b18a5f.png) no-repeat right 0
+}
+
+.myOrder .address-wrap .body .addressbox .addaddressitem {
+	position: relative;
+	float: left;
+	overflow: hidden;
+	border: 1px dashed #e7e6e4;
+	background: url(images/add_33d7fa21.png) no-repeat center;
+	cursor: pointer
+}
+
+.address-edit-wrap {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .8)
+}
+
+.address-edit-wrap form {
+	width: 870px;
+	height: 340px;
+	margin: 100px auto 0;
+	border-radius: 5px;
+	background: #fff
+}
+
+.address-edit-wrap form .title {
+	line-height: 75px;
+	text-align: center;
+	font-size: 18px
+}
+
+.address-edit-wrap form .left {
+	float: left;
+	width: 300px
+}
+
+.address-edit-wrap form .right {
+	margin-left: 300px
+}
+
+.address-edit-wrap form .row {
+	position: relative;
+	height: 60px
+}
+
+.address-edit-wrap form .row span {
+	display: block;
+	float: left;
+	width: 100px;
+	margin-right: 30px;
+	text-align: right;
+	line-height: 30px
+}
+
+.address-edit-wrap form .row input {
+	display: block;
+	float: left;
+	width: 150px;
+	height: 30px;
+	border: 1px solid #d1d3d3;
+	border-radius: 5px;
+	text-indent: 1em
+}
+
+.address-edit-wrap form .row .address-select {
+	display: block;
+	position: relative;
+	float: left;
+	width: 115px;
+	margin-right: 30px
+}
+
+.address-edit-wrap form .row .address-select input {
+	width: 95px;
+	height: 30px;
+	margin: 0;
+	padding: 0 10px;
+	text-indent: 0
+}
+
+.address-edit-wrap form .row .address-select i {
+	display: block;
+	position: absolute;
+	right: 8px;
+	top: 16px;
+	width: 0;
+	height: 0;
+	border-top: 7px solid #a4a9ad;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent
+}
+
+.address-edit-wrap form .row .select-list {
+	display: none;
+	position: absolute;
+	top: 32px;
+	z-index: 100;
+	overflow: auto;
+	width: 118px;
+	height: auto;
+	max-height: 200px;
+	margin: 0 20px 0 0;
+	padding: 0;
+	border: 1px solid #f0efee;
+	background-color: #fff
+}
+
+.address-edit-wrap form .row .select-list li {
+	margin: 0;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	cursor: pointer
+}
+
+.address-edit-wrap form .row .select-list li:hover {
+	background-color: #eaeaea
+}
+
+.address-edit-wrap form .row .province-content {
+	left: 130px
+}
+
+.address-edit-wrap form .row .city-content {
+	left: 274px
+}
+
+.address-edit-wrap form .row .street-content {
+	left: 420px
+}
+
+.address-edit-wrap form .row .detail-address-inp {
+	width: 405px
+}
+
+.address-edit-wrap form .row .address-code {
+	width: 115px
+}
+
+.address-edit-wrap form .btn-wrap {
+	clear: both;
+	text-align: center
+}
+
+.address-edit-wrap form .btn-wrap .niu-btn-middle {
+	width: 135px;
+	height: 30px;
+	margin: 20px;
+	line-height: 30px;
+	color: #fff;
+	transition: background-color .2s ease-out
+}
+
+.hide {
+	display: none
+}

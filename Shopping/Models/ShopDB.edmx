@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ShopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="AddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddressInfo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Postcode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDefault" Type="bit" />
+          <Property Name="Tel" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressType" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="Areas" Type="nvarchar" MaxLength="100" />
+          <Property Name="AddressName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminName" Type="varchar" MaxLength="50" />
+          <Property Name="AdminPWD" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerPWD" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderState" Type="nvarchar" MaxLength="10" />
+          <Property Name="OrderMoney" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SenDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="RecevieDate" Type="nchar" MaxLength="10" />
+          <Property Name="AddressInfo" Type="nvarchar" MaxLength="100" />
+          <Property Name="InvoiceName" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoiceType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Postage" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Express" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExpressNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDeatil">
+          <Key>
+            <PropertyRef Name="DetialID" />
+          </Key>
+          <Property Name="DetialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="ProperID" Type="int" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProperName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IMG" Type="nvarchar" MaxLength="100" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TotalMoney" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Postage" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProductProperty">
+          <Key>
+            <PropertyRef Name="ProperID" />
+          </Key>
+          <Property Name="ProperID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProperName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IMG" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="TypeID" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="ProductID" Type="int" />
+        </EntityType>
+        <EntityType Name="ShopCar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="ProperID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Address_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="OrderDeatil" Type="Self.OrderDeatil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDeatil">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_ProductProperty">
+          <End Role="ProductProperty" Type="Self.ProductProperty" Multiplicity="0..1" />
+          <End Role="OrderDeatil" Type="Self.OrderDeatil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductProperty">
+              <PropertyRef Name="ProperID" />
+            </Principal>
+            <Dependent Role="OrderDeatil">
+              <PropertyRef Name="ProperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductProperty_ProductType">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+          <End Role="ProductProperty" Type="Self.ProductProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="ProductProperty">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductType_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductType">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShopCart_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="ShopCar" Type="Self.ShopCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="ShopCar">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopDBModelStoreContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDeatil" EntityType="Self.OrderDeatil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductProperty" EntityType="Self.ProductProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShopCar" EntityType="Self.ShopCar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Address_Customer" Association="Self.FK_Address_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDeatil" EntitySet="OrderDeatil" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_ProductProperty" Association="Self.FK_OrderDetail_ProductProperty">
+            <End Role="ProductProperty" EntitySet="ProductProperty" />
+            <End Role="OrderDeatil" EntitySet="OrderDeatil" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductProperty_ProductType" Association="Self.FK_ProductProperty_ProductType">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="ProductProperty" EntitySet="ProductProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductType_Product" Association="Self.FK_ProductType_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductType" EntitySet="ProductType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShopCart_Customer" Association="Self.FK_ShopCart_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="ShopCar" EntitySet="ShopCar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="AddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddressInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Postcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDefault" Type="Boolean" />
+          <Property Name="Tel" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="Areas" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AddressName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Address_Customer" FromRole="Address" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AdminPWD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerPWD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Address_Customer" FromRole="Customer" ToRole="Address" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+          <NavigationProperty Name="ShopCars" Relationship="Self.FK_ShopCart_Customer" FromRole="Customer" ToRole="ShopCar" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderState" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="OrderMoney" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SenDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecevieDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AddressInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Postage" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Express" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExpressNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="OrderDeatils" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDeatil" />
+        </EntityType>
+        <EntityType Name="OrderDeatil">
+          <Key>
+            <PropertyRef Name="DetialID" />
+          </Key>
+          <Property Name="DetialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="ProperID" Type="Int32" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProperName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IMG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TotalMoney" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetail_Order" FromRole="OrderDeatil" ToRole="Order" />
+          <NavigationProperty Name="ProductProperty" Relationship="Self.FK_OrderDetail_ProductProperty" FromRole="OrderDeatil" ToRole="ProductProperty" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Postage" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ProductTypes" Relationship="Self.FK_ProductType_Product" FromRole="Product" ToRole="ProductType" />
+        </EntityType>
+        <EntityType Name="ProductProperty">
+          <Key>
+            <PropertyRef Name="ProperID" />
+          </Key>
+          <Property Name="ProperID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProperName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IMG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="TypeID" Type="Int32" />
+          <NavigationProperty Name="OrderDeatils" Relationship="Self.FK_OrderDetail_ProductProperty" FromRole="ProductProperty" ToRole="OrderDeatil" />
+          <NavigationProperty Name="ProductType" Relationship="Self.FK_ProductProperty_ProductType" FromRole="ProductProperty" ToRole="ProductType" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ProductID" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProductType_Product" FromRole="ProductType" ToRole="Product" />
+          <NavigationProperty Name="ProductProperties" Relationship="Self.FK_ProductProperty_ProductType" FromRole="ProductType" ToRole="ProductProperty" />
+        </EntityType>
+        <EntityType Name="ShopCar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="ProperID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_ShopCart_Customer" FromRole="ShopCar" ToRole="Customer" />
+        </EntityType>
+        <Association Name="FK_Address_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShopCart_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="ShopCar" Type="Self.ShopCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="ShopCar">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="OrderDeatil" Type="Self.OrderDeatil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDeatil">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_ProductProperty">
+          <End Role="ProductProperty" Type="Self.ProductProperty" Multiplicity="0..1" />
+          <End Role="OrderDeatil" Type="Self.OrderDeatil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductProperty">
+              <PropertyRef Name="ProperID" />
+            </Principal>
+            <Dependent Role="OrderDeatil">
+              <PropertyRef Name="ProperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductType_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductType">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductProperty_ProductType">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+          <End Role="ProductProperty" Type="Self.ProductProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="ProductProperty">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopDBEntities5" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderDeatils" EntityType="Self.OrderDeatil" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="ProductProperties" EntityType="Self.ProductProperty" />
+          <EntitySet Name="ProductTypes" EntityType="Self.ProductType" />
+          <EntitySet Name="ShopCars" EntityType="Self.ShopCar" />
+          <AssociationSet Name="FK_Address_Customer" Association="Self.FK_Address_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShopCart_Customer" Association="Self.FK_ShopCart_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="ShopCar" EntitySet="ShopCars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDeatil" EntitySet="OrderDeatils" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_ProductProperty" Association="Self.FK_OrderDetail_ProductProperty">
+            <End Role="ProductProperty" EntitySet="ProductProperties" />
+            <End Role="OrderDeatil" EntitySet="OrderDeatils" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductType_Product" Association="Self.FK_ProductType_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductType" EntitySet="ProductTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductProperty_ProductType" Association="Self.FK_ProductProperty_ProductType">
+            <End Role="ProductType" EntitySet="ProductTypes" />
+            <End Role="ProductProperty" EntitySet="ProductProperties" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShopDBModelStoreContainer" CdmEntityContainer="ShopDBEntities5">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="ShopDBModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="AddressInfo" ColumnName="AddressInfo" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="AddressType" ColumnName="AddressType" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Areas" ColumnName="Areas" />
+                <ScalarProperty Name="AddressName" ColumnName="AddressName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="ShopDBModel.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+                <ScalarProperty Name="AdminPWD" ColumnName="AdminPWD" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="ShopDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerPWD" ColumnName="CustomerPWD" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ShopDBModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderState" ColumnName="OrderState" />
+                <ScalarProperty Name="OrderMoney" ColumnName="OrderMoney" />
+                <ScalarProperty Name="SenDate" ColumnName="SenDate" />
+                <ScalarProperty Name="RecevieDate" ColumnName="RecevieDate" />
+                <ScalarProperty Name="AddressInfo" ColumnName="AddressInfo" />
+                <ScalarProperty Name="InvoiceName" ColumnName="InvoiceName" />
+                <ScalarProperty Name="InvoiceType" ColumnName="InvoiceType" />
+                <ScalarProperty Name="Postage" ColumnName="Postage" />
+                <ScalarProperty Name="Express" ColumnName="Express" />
+                <ScalarProperty Name="ExpressNumber" ColumnName="ExpressNumber" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDeatils">
+            <EntityTypeMapping TypeName="ShopDBModel.OrderDeatil">
+              <MappingFragment StoreEntitySet="OrderDeatil">
+                <ScalarProperty Name="DetialID" ColumnName="DetialID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ProperID" ColumnName="ProperID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="ProperName" ColumnName="ProperName" />
+                <ScalarProperty Name="IMG" ColumnName="IMG" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ShopDBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Postage" ColumnName="Postage" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductProperties">
+            <EntityTypeMapping TypeName="ShopDBModel.ProductProperty">
+              <MappingFragment StoreEntitySet="ProductProperty">
+                <ScalarProperty Name="ProperID" ColumnName="ProperID" />
+                <ScalarProperty Name="ProperName" ColumnName="ProperName" />
+                <ScalarProperty Name="IMG" ColumnName="IMG" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="ShopDBModel.ProductType">
+              <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShopCars">
+            <EntityTypeMapping TypeName="ShopDBModel.ShopCar">
+              <MappingFragment StoreEntitySet="ShopCar">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ProperID" ColumnName="ProperID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

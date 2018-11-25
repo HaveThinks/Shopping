@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xml:lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<title>O2O体验店查询 - 小牛电动</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+    <meta name="renderer" content="webkit">
+    <link rel="dns-prefetch" href="http://niu.com">
+    <meta name="viewport" content="width=1200, initial-scale=1, maximum-scale=1, user-scalable=yes, minimal-ui">
+    <meta name="keywords" content="小牛O2O体验店,小牛线下体验,小牛电动,牛电科技,小牛,电动车,踏板车" />
+    <meta name="description" content="小牛电动O2O体验店查询" />
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<style>.focus-loc span{color: #ea0f2d;font-size:20px;font-weight: normal;margin-top: -15px;display: inline-block;;margin-right: 40px;}
+        .focus-ind span{color: #000;font-size:20px;font-weight: normal;margin-top: -15px;display: inline-block;margin-right: 40px;}
+
+    .hover-exps {color:#7F7F7F;font-weight: normal;}
+        .icon-phone:before{
+            content: "" !important;
+        }
+    </style>
+
+
+<link type="text/css" rel="stylesheet" href="http://dn-www-niu.qbox.me/static/pkg/auto_combine_87158_883aaa8.css">
+</head>
+<body>
+<style>.niu-header.fixed-top .header-navCont {
+        position: relative !important;
+    }
+</style>
+<script src="https://www.niu.com/component/header/"></script>
+
+<div class="container clearfix">
+	 <div class="exp-menu left-no clearfix">
+         <a href="authorized.html" class="fxl focus-ind size18"><span>授权体验店</span></a>
+	<a href="locate.html" class="fxl focus-ind size18"><span>维修点查询</span></a>
+
+    <a href="javascript:;"><span class="sub-icon js-sub">服务商加盟</span></a>
+    <div class="exp-submenu ie-pie">
+	    <ul>
+	        <li><a href="apply.html">加盟申请</a></li>
+	        <!-- <li><a href="javascript:;">审核管理</a></li> -->
+	        <li><a href="search.html">进度查询</a></li>
+	        <!-- <li><a href="javascript:;">签约管理</a></li>
+	        <li><a href="javascript:;">入网确认</a></li> -->
+	    </li>
+	</div>
+ </div>
+ <div class="city-menu clearfix">
+		<ul id="job-menu"></ul>
+	</div>
+	<div class="city-menu-sub" id="job-main">
+		<ul id="city-list" class="city-list"></ul>
+	</div>
+    <ul class="store-list clearfix" id="store-list">
+
+    </ul>
+    <p class="m20">注:带有盾牌标识为可参与NIU CARE冬季保养</p>
+</div>
+<div class="footer js-footer">
+<div class="footer-outer clearfix js-footer-outer" style="display: none;">
+	<div class="container clearfix">
+		<div class="fxl copyright">© 2015 niu.com All rights reserved.    北京牛电科技有限责任公司    京ICP备15010724号-1</div>
+		<div class="fxr">
+			<span class="phone">客服热线 400-6388-666</span>
+			<i class="icon-phone"></i>
+			<a href="javascript:;" onclick="popupShow()"><i class="icon-weixin"></i></a>
+			<a href="http://weibo.com/niuescooter" title="微博：@小牛电动" target="_blank"><i class="icon-weibo"></i></a>
+		</div>
+	</div>
+</div>
+</div>
+
+<div id="popupBg" class="popupBg"></div>
+<div id="popupCon01" class="popupCon clearfix">
+	<div class="content clearfix">
+		<img src="http://dn-www-niu.qbox.me/static/component/footer/v2/wechat_82634a7.jpg">
+		<br>
+		微信公众号：牛电科技
+	</div>
+</div>
+<script type="text/javascript" charset="utf-8" src="http://dn-www-niu.qbox.me/static/pkg/auto_combine_e354d_1cf68ed.js"></script>
+<script>
+$(document).ready(function(){
+     $(".js-sub").click( function(){
+        $(".exp-submenu").toggle();
+     })
+})
+</script>
+	 <script type="text/javascript">!function(n){var t=n.Utils=n.Utils||{};t.data=function(){var n={},t="http://cms.niu.com/news/index.php?callback=?",a=function(n){var t=[];for(var a in n)n.hasOwnProperty(a)&&t.push(n[a]);return t.join("_")},r=function(r,i){$.ajax({url:t,data:r,timeout:5e3,type:"get",dataType:"jsonp",success:function(t){t&&0!==!+t.status&&(n[a(r)]=t.data,i&&i(!0))},error:function(){}})},i=function(t,o,u,c){o.a=t,o.c="Api";var e;(e=n[a(o)])||c?u&&u(e):r(o,$.proxy(i,null,t,o,u))};return{get:i}}()}(window);</script>
+<script type="text/javascript">!function(){function loadCity(t){$("#job-menu .item").removeClass("hover"),$("#job-menu .item[data-id="+t+"]").addClass("hover"),getData("son",{catid:t},function(t){$("#city-list").html(cityTpl({data:t})),loadCityItem(t[0].id)})}function loadCityItem(t){getData("all_arc",{catid:t,type:"O2O"},function(i){$("#city-list .item[data-id="+t+"]").addClass("hover").siblings().removeClass("hover");var a="暂无体验店信息";i&&i.length&&(a=mainItemTpl({items:i})),$("#store-list").html(a)})}function init(){getData("all",{},function(t){t&&t.length&&($("#job-menu").html(cityTpl({data:t})),loadCity(t[0].id))}),$("#job-menu").delegate("li[data-id]","click",function(){var t=$(this),i=t.data("id");loadCity(i)}),$("#city-list").delegate("li[data-id]","click",function(t){var i=$(t.currentTarget);loadCityItem(i.data("id"))})}var cityTpl=function(obj){{var __t,__p="";Array.prototype.join}with(obj||{}){__p+="\n";for(var i=0;i<data.length;i++){var item=data[i];__p+='\n<li class="item" data-id="'+(null==(__t=item.id)?"":__t)+'"><b>'+(null==(__t=item.name)?"":__t)+"</b></li>\n"}__p+="\n"}return __p},mainItemTpl=function(obj){{var __t,__p="";Array.prototype.join}with(obj||{}){__p+="";var item;__p+="\n";for(var i=0,l=items.length;l>i;i++)__p+="\n",item=items[i],__p+='\n<li>\n    <a href="detail.html?cateId='+(null==(__t=item.catid)?"":__t)+"&id="+(null==(__t=item.id)?"":__t)+'">\n        <!-- <p class="title">'+(null==(__t=item.title)?"":__t)+'</p> -->\n        <p class="info">'+(null==(__t=item.yingyedizhi)?"":__t)+'</p>\n        <p class="info">'+(null==(__t=item.lianxidianhua)?"":__t)+'</p>\n        <p class="info">'+(null==(__t=item.xingming)?"":__t)+"</p>\n    ",1==item.insurance&&(__p+='\n    	<a href="javascript:;"class="up-guard">\n    	</a>\n\n		<span class="up-guard-tip none">\n			<span>可参与NIU CARE</span>\n			<span class="triangle-down"></span>\n		</span>\n    '),__p+="\n</li>\n";__p+=""}return __p},getData=Utils.data.get;init()}();</script>
+
+
+<script>!function(){function e(){var e=f.offset().top,r=o.height();r>e?n.addClass("fixed"):n.removeClass("fixed"),n.show()}var o=$(window),f=$(".js-footer"),n=$(".js-footer-outer");o.resize(e),o.on("page.render",function(){e()}),e()}();</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?2bd5252f20d08f5e7ee0bafd52e1d2cb";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script>function stat(t){t=t||{},console.log("stat",t.appid,t.type,t.ext,t),(new Image).src="http://123.57.62.226/niu?appid="+t.appid+"&type="+t.type+"&ext="+encodeURIComponent(JSON.stringify(t.ext||""))}window.onerror=function(t,e,n){var a={};a.message=t.message,a.url=e,a.line=n,a.page=window.location.href,a.ua=window.navigator.userAgent;var o=[];for(var r in a)o.push(r+"="+a[r]);o=o.join("&");var i=location.hostname+location.pathname,p="error",s=JSON.stringify(a),c="";_hmt.push(["_trackEvent",i,p,s,c]);var w=[t,e,n];w.push(location.href),stat({appid:"www",type:"error",ext:w})};</script>
+
+<script type='text/javascript'>
+    (function(a,b,c,d){
+        a[c]=function(){a[c]['ar']=a[c]['ar']||[];a[c]['ar'].push(arguments);};
+        var s=b.createElement('script');s.async = 1;s.src='//t.agrantsem.com/js/agt.js';
+        var r=b.getElementsByTagName('script')[0];r.parentNode.insertBefore(s,r);
+    })(window,document,'_agtjs','script');
+    _agtjs('init','AG_521723_RRTO','niu.com');
+    _agtjs('trackPv');
+</script>
+
+</body>
+</html>

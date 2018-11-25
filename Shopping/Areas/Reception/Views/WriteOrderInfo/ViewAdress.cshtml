@@ -1,0 +1,151 @@
+﻿
+<style>
+    .haha {
+        float: left;
+    }
+</style>
+@{
+    Layout = null;
+}
+
+
+@foreach (Shopping.Models.Address items in ViewBag.adress)
+{
+    <div class="addressitem onselect viewAdress" group="address" mm="@items.IsDefault.ToString()" state="@items.AddressName" adreeid="@items.AddressID" select="No">
+        @if (items.IsDefault.ToString() == "True")
+        {
+            <img src="~/Content/WriteInfo/Img/default_dcd86803.png" />//默认图片
+        }
+
+        <span id="name">@items.AddressName 收</span>
+        <hr>
+        <p id="tel">@items.Tel</p>
+        <p id="areas">@items.Areas</p>
+        <p id="addressInfo">@items.AddressInfo</p>
+        <div class="btngroup">
+            <span class="modaddressbtn" adressid="@items.AddressID"> </span>
+            <span class="deladdressbtn" adressid="@items.AddressID"> </span>
+        </div>
+    </div>
+}
+
+
+
+
+
+@if (ViewBag.count != 6)
+{
+    <div id="J_additem" class="addressitem addaddressitem"></div>
+}
+<input type="text" id="sl" value="@ViewBag.count" class="hide" />
+
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //出选中地址外，其他都为白色
+        $(".viewAdress").css("background-color", "white");
+
+        //显示下面的图片
+        $(".viewAdress").each(function () {
+            //是默认就显示右下角的勾
+            if ($(this).attr("mm") == "True") {
+
+                $("#input_taxTitle").val($(this).attr("state"));   //取抬头信息
+                $("#input_taxTitle").attr("naa", $(this).attr("state"));   //存值
+                $(this).attr("select", "Yes");    //是不是选中
+                $(this).css("background", " #f0efee   url(/Content/WriteInfo/Img/沟.png) no-repeat right bottom") //加个背景图片
+            }
+            //鼠标移进，移出，修改和删除的图标
+            $(this).hover(function () {
+                //鼠标移进去，显示
+                $(this).find(".modaddressbtn").css("background", "url(/Content/WriteInfo/Img/修改.png) no-repeat Center");
+                $(this).find(".deladdressbtn").css("background", "url(/Content/WriteInfo/Img/X.png) no-repeat Center");
+            }, function () {
+                //鼠标移出  消失
+                $(this).find(".modaddressbtn").css("background", "");
+                $(this).find(".deladdressbtn").css("background", "");
+            });
+
+            var id;
+            //删除地址
+            $(this).find("span.deladdressbtn").click(function () {
+                id = $(this).attr("adressid");
+                    $("#one,#two").css("display", "block");
+                    $(".niuDialog-head").text("你确定删除该地址吗？");
+                    $(".niuDialog-body").text("可能无法收到货物");
+                    //highlight        color: #df001f;
+                    $(".niuDialog-leftBtn").addClass("haha").css("margin-left", "180px").text("取消");
+                    $(".niuDialog-rightBtn").css("display", "block").text("确定");
+
+            });
+
+            //点击确定删除
+            $(".niuDialog-rightBtn").click(function () {
+                $("#one,#two").css("display", "none");
+                $(".niuDialog-leftBtn").removeClass("haha").text("确定");
+                $(".niuDialog-rightBtn").css("display", "none").text("取消");   //先还原 原来的提示框
+                 $.ajax({
+                        type: "post",
+                        url: "@Url.Action("DelAdress")",
+                        data: { shopID: id },
+                        success: function (data) {
+                            $("#J_addressbox").html(data);   //更新地址
+                            //如果是最后一条信息 抬头变空
+                            if (parseInt($("#sl").val()) == 0) {
+                                $("#input_taxTitle").val("");
+                                $("#input_taxTitle").attr("naa", "");
+                            }
+                        }
+                    })
+            })
+
+
+
+            //修改地址
+            $(this).find("span.modaddressbtn").click(function () {
+                var id = $(this).attr("adressid");
+                $.get("@Url.Action("UpdateAdress")", { "adressID": id }, function (data) {
+                    $("#J_subaddress").html(data);   //更新地址
+                    $(".addressbox").hide();
+                    $(".addaddress").show();
+                    $("#J_canceladdaddressbtn").css("background-color", "#5c6670");     //取消背景
+                })
+            });
+
+        //点击换颜色
+        $(this).click(function () {
+
+            // 选择地址的时候抬头类容会变
+            $("#input_taxTitle").val($(this).attr("state"));
+            $("#input_taxTitle").attr("naa", $(this).attr("state"));
+
+
+            //除了点击外为白色，没勾图片
+            $(".viewAdress").attr("select", "No");  //先让选中属性全部为No,在让点击的那个为Yes
+            $(this).attr("select", "Yes");
+            $(".viewAdress").css("background", "#fff url()");
+            $(this).css("background", " #f0efee   url(/Content/WriteInfo/Img/沟.png) no-repeat right bottom");
+        })
+    })
+        //end
+
+
+        })
+
+        //添加地址
+        $(function () {
+            $(".addaddressitem").click(function () {
+                $.get("@Url.Action("UpdateAdress")", function (data) {
+                    $("#J_subaddress").html(data);   //更新地址
+                    $(".addressbox").hide();
+                    $(".addaddress").show();
+                    $("#J_canceladdaddressbtn").css("background-color", "#5c6670");     //取消背景
+                })
+            })
+        });
+
+
+</script>
+

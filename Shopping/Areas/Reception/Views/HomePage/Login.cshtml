@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "用户登录";
+}
+<script type="text/javascript">
+    $(function () {
+        $("#loginbtn").click(function () {
+        var p = {
+            CustomerName: $("#account").val(),
+            CustomerPWD: $("#password").val()
+        };
+        $.post("@Url.Action("Login")", p, function (data) {
+            if (data == "Account") {
+                $(".disabled-box-account").show();
+            }
+            else if (data == "PWD") {
+                $(".disabled-box-pwd").show();
+            }
+            else {
+                window.location = data;//跳到首页
+            }
+        })
+        })
+        //账号
+        $(".disabled-box-account").click(function () {
+            $(this).hide();
+            $("#account").focus();
+        });
+        //密码
+        $(".disabled-box-pwd").click(function () {
+            $(this).hide();
+            $("#password").focus();
+        });
+    })
+
+</script>
+<section class="content">
+    <article class="c-login">
+        <form method="post" action="/login" role="form" id="login_form">
+            <span class="niu-form-title">用户登录</span>
+            <input type="hidden" name="_csrf" value="">
+            <span class="niu-input niu-input-large niu-input-account">
+                <i></i><input type="text" id="account" name="account" placeholder="请输入手机号码/邮箱/用户名" verify="str:!" msg="手机号码格式不正确:请输入手机号" value="">
+                <div class="disabled-box disabled-box-account">
+                    <span class="niu-disabled-icon"></span>
+                    <span class="niu-tipmsg niu-tipmsg-account"></span>
+                </div>
+            </span>
+            <span class="niu-input niu-input-large niu-input-pwd">
+                <i></i>
+                <input type="password" id="password" name="password" placeholder="请输入密码" verify="numandstr:!" msg="密码格式不正确:请输入密码" value="">
+                <div class="disabled-box disabled-box-pwd">
+                    <span class="niu-disabled-icon"></span>
+                    <span class="niu-tipmsg niu-tipmsg-pwd"></span>
+                </div>
+            </span>
+            <div class="slideVerify">
+                <input type="hidden" id="ip_tip" name="ip_tip" value="">
+            </div>
+            <div class="loginsele clearfix">
+                <input class="niu-checkbox" type="checkbox" name="remember" id="remember"><label class="niu-checkbox-lable" for='remember'>记住登录状态</label>
+                <a href="Register"><span class="getpwd">快速注册</span></a>
+                <a href="/forget"><span class="getpwd">忘记密码</span></a>
+            </div>
+        </form>
+        <button class="niu-btn niu-btn-large niu-btn-red" id="loginbtn">立即登录</button>
+        <div class="loginother clearfix">
+        </div>
+    </article>
+</section>
+<link href="~/Areas/Reception/Content/static/account/widget/login/pc/login_e450d63d.css" rel="stylesheet" />
+
+

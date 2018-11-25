@@ -1,0 +1,329 @@
+﻿
+@{
+    ViewBag.Title = "WriteInfo";
+}
+
+@using Shopping.Areas.Reception.Models;
+@using Shopping.Models;
+
+
+<link href="~/Areas/Reception/Content/WriteInfo/CSS/shopping_process_nav_aa8a69db.css" rel="stylesheet" />
+<link href="~/Areas/Reception/Content/WriteInfo/CSS/writeAdress.css" rel="stylesheet" />
+
+
+
+
+
+<section id="process2" class="shoppingprocess">
+    <div class="sp-content">
+        <ul class="process">
+            <li class="select1 pbtn">1.我的购物车</li>
+            <li class="select2 pbtn">2.填写订单信息</li>
+            <li class="select3 pbtn">3.完成支付</li>
+        </ul>
+    </div>
+</section>
+
+
+
+<section class="shopping-address">
+    <div class="title">
+        订单信息
+    </div>
+    <div class="confirm-content">
+        <div class="confrim-content-title">
+            <span>收货地址</span>
+            @*<a href="#" id="J_additem" class="additem">新增收货地址</a>*@
+
+        </div>
+
+
+        @*添加地址*@
+        <div id="J_addaddress" class="addaddress">
+            <form id="J_subaddress" name="subaddress">
+                @{Html.RenderAction("UpdateAdress");}
+
+            </form>
+        </div>
+
+
+        @*显示地址 需要做静态更新  *@
+        <div id="J_addressbox" class="addressbox">
+            @{Html.RenderAction("ViewAdress");}
+        </div>
+
+
+        <div class="clearfix"></div>
+        <div class="confrim-content-title">支付方式</div>
+        <span class="payway">在线支付（支付宝、微信扫码）</span>
+        <div class="confrim-content-title">配送方式</div>
+        <span>整车由日日顺或顺丰物流配送 配件由顺丰快递单独配送<span class="kuaidi"></span></span>
+
+        <hr class="line2">
+        <div class="fapiao">
+            <p id="dz">
+                <span>发票信息</span>
+                <span class="fapiaobtn qiyefapiao onselect" group="fapiaotype" data-taxtype="2" state="Yes">电子</span>
+                <span class="fapiaobtn gerenfapiao" group="fapiaotype" data-taxtype="1" state="No">普通</span>
+
+            </p>
+            <div class="taitou putongfapiao hide">
+                <p>
+                    <span class="fapiaobtn dianzi onselect" group="fapiao" data-taxtype="1">个人</span>
+                    <span class="fapiaobtn  putong" group="fapiao" data-taxtype="2">单位</span>
+                </p>
+            </div>
+            <div class="taitou dianzifapiao onselect">
+                <p>
+                    <span class="fapiaobtn dianzi onselect" group="fapiao2" data-taxtype="3" state="Yes">个人</span>
+                    <span class="fapiaobtn  putong" group="fapiao2" data-taxtype="4" state="No">单位</span>
+                </p>
+            </div>
+            <p class="dianzi_des">电子发票是税局认可的有效凭证，其法律效力、基本用途及使用规定同纸质发票，如需纸质票可自行下载打印。</p>
+            <div class="taitou">发票抬头：<input id="input_taxTitle" class="fapiaotaitou confirm-input" type="text" autocomplete="off" naa="" placeholder="为了方便上牌照，请您填写真实姓名" value="@ViewBag.name"></div>
+            <p>发票内容：购买商品明细</p>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="shopping-address">
+    <div class="title">
+        <div class="title_meaasge">商品信息</div>
+        <div class="title_price">单价</div>
+        <div class="title_num">数量</div>
+        <div class="title_total">小计</div>
+    </div>
+
+
+
+
+
+    @*商品*@
+
+    <div class="cartBox">
+
+        @foreach (OrderCC item in ViewBag.orderShop)
+        {
+            var xj = int.Parse(item.Count) * int.Parse(item.Price);
+            <ul class="cartItem">
+                <li class="cartItem-img">
+                    <img src="/Content/img/@item.IMG">
+                </li>
+
+                <li class="cartItem-name">
+                    <div class="cartItem-name-c">
+                        <p>@item.TypeName @item.ProName</p>
+
+                        <p class="subhead">@item.TypeName @item.ProName</p>
+                    </div>
+                </li>
+
+                <li class="cartItem-price">
+                    <span id="price">@item.Price</span>元
+                </li>
+                <li class="cartItem-num">×@item.Count</li>
+                <li class="cartItem-totalprice"><span id="xj" postage="@item.Postage">@xj</span>元</li>
+            </ul>
+        }
+
+        <div class="cartBox-bottom">
+
+            <span>共计 @ViewBag.count 件商品</span>
+            <div class="total">
+                <p class="J_itemTotal" id="hhj">商品合计：4298元</p>
+                <p class="J_shippingTotal" id="yf">配送费用：238元</p>
+                <p class="J_shipping">优惠金额：0元</p>
+                <p class="yingfujine J_orderTotal" id="zj">费用总计：元</p>
+            </div>
+            <input type="hidden" id="shippingTotal" value="238">
+        </div>
+    </div>
+</section>
+
+
+<div class="goapply">
+    <span id="goapply" class="niu-btn niu-btn-red niu-btn-large">立即支付</span>
+</div>
+
+<li id="T_province" class="hide"></li>
+<li id="T_city" class="hide"></li>
+<li id="T_street" class="hide"></li>
+<div class="niu-mask"></div>
+
+
+
+<div class="niuDialog-mask show" style="display:none;" id="one"></div>
+<div class="niuDialog alert show" style="display:none;" id=two>
+    <div class="niuDialog-head"></div>
+    <div class="niuDialog-body">
+
+    </div>
+    <div class="niuDialog-foot">
+        <span class="niuDialog-leftBtn ">
+            确定
+        </span>
+        <span class="niuDialog-rightBtn " style="padding-right: 10px; color: #df001f; float: right;">
+            取消
+        </span>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //上面三个高度
+        $("#process2").css({ "height": "100px" });
+        $(".sp-content").css({ "margin-top": "80px" });
+        //下面的费用计算
+        var hj = 0;
+        var yf = 0;
+        //只循环了一遍
+        $("ul.cartItem").each(function () {
+            var $xj = $(this).find("#xj");
+            hj = parseInt(hj) + parseInt($xj.text());
+            yf = parseInt(yf) + parseInt($xj.attr("postage"));
+        });
+        if (parseInt(hj) > 499) {
+            yf = 0;
+        }
+        var zj = parseInt(hj) + parseInt(yf);
+
+        $("#hhj").text("商品合计："+hj+"元");
+        $("#yf").text("配送费用：" + yf + "元");
+        $("#zj").text("费用总计：" + zj + "元");
+        //end
+
+        $("#J_addaddressbtn").css("background-color", "#df001f");  //添加地址背景
+
+
+        //添加地址
+        $(".additem").click(function () {
+            $.get("@Url.Action("UpdateAdress")", function (data) {
+                $("#J_subaddress").html(data);   //更新地址
+                $(".addressbox").hide();
+                $(".addaddress").show();
+                $("#J_canceladdaddressbtn").css("background-color", "#5c6670");     //取消背景
+            })
+        });
+
+        //发票信息 和发票抬头
+        $(".fapiao").on("click", "span", function () {
+            //点谁谁的属性就改下，生成订单的时候需要数据
+
+            //点击普通
+            if ($(this).text() == "普通") {
+                $(this).attr("state", "Yes");  //用来传地址ID
+                $(".qiyefapiao").attr("state", "No");
+                $(".qiyefapiao").css("background-color", "#fff");   //背景换白色
+                $(this).css("background-color", " #f0efee");      //背景换灰色
+                $(".dianzi_des").css("display", "none");       //下面的消失
+
+            }
+                //点击电子
+            else if ($(this).text() == "电子") {
+                $(this).attr("state", "Yes");
+                $(".gerenfapiao").attr("state", "No");
+                $(".gerenfapiao").css("background-color", "#fff");
+                $(this).css("background-color", " #f0efee");
+                $(".dianzi_des").css("display", "inline-block");
+
+            }
+                //点击单位
+            else if ($(this).text() == "单位") {
+                $(this).attr("state", "Yes");
+                $(".dianzi").attr("state", "No");
+
+                $(".dianzi").css("background-color", "#fff");
+                $(this).css("background-color", " #f0efee");
+                $("#input_taxTitle").val("");
+
+            }
+                //点击个人
+            else if ($(this).text() == "个人") {
+                $(this).attr("state", "Yes");
+                $(".putong").attr("state", "No");
+
+                $(".putong").css("background-color", "#fff");
+                $(this).css("background-color", " #f0efee");
+                $("#input_taxTitle").val($("#input_taxTitle").attr("naa"));   //属性naa存的抬头姓名
+            }
+        });
+
+
+
+
+
+
+        //立即购买   选中的地址（有背景的）
+        $("#goapply").click(function () {
+            //如果地址为空提示
+            if (parseInt($("#sl").val())==0) {
+                $("#one,#two").css("display", "block");
+                $(".niuDialog-body").text("您还没选择地址！！");
+            return false;
+        }
+
+            //如果抬头为空提示
+            if ($("#input_taxTitle").val()=="") {
+                $("#one,#two").css("display", "block");
+                $(".niuDialog-body").text("抬头不能为空！！");
+                $("#input_taxTitle").focus();
+                return false;
+            }
+
+            //取到你选择的地址
+            var addressInfo;
+            $(".addressitem").each(function () {
+                if ( $(this).attr("select")=="Yes") {
+                    //dd=$(this).attr("adreeid");   //地址ID
+                 addressInfo=$(this).find("span#name").text().split(' ')[0]+","+$(this).find("p#areas").text().trim()+$(this).find("p#addressInfo").text()+":"
+                    + $(this).find("p#tel").text();
+                }
+            });
+
+
+            var type="";  //抬头类型
+            $(".fapiaobtn").each(function(){
+                if ($(this).attr("state")=="Yes") {
+                    type += $(this).text() + "-";
+                }
+            })
+            var p = type.split('-');
+            var tt = p[0] + "-" + p[1];  //抬头类型
+
+
+            var name = $("#input_taxTitle").val();  //抬头姓名
+            //需要生成订单
+            var p = {
+                OrderState: "待付款",
+                OrderMoney: zj,
+                AddressInfo: addressInfo,
+                InvoiceName: $("#input_taxTitle").val(),
+                InvoiceType: tt,
+                Postage: yf
+            };
+            //p就相当于自动装配
+            $.post("@Url.Action("GoOrder")",p, function (data) {
+                window.location = data;
+            })
+        })
+
+        //取消提示框
+        $(".niuDialog-leftBtn").click(function () {
+            $("#one,#two").css("display", "none");
+            $(".niuDialog-head").text("");
+            $(".niuDialog-leftBtn").removeClass("haha").text("确定");
+            $(".niuDialog-rightBtn").css("display", "none").text("取消");
+        })
+    })
+</script>
+

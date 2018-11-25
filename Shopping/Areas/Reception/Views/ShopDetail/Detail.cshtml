@@ -1,0 +1,179 @@
+﻿@model Shopping.Areas.Reception.Models.ShopDetail
+
+@{
+    ViewBag.Title = "商品详情";
+}
+<link href="~/Areas/Reception/Content/ShopDetail/CSS/detail_21ae09f4.css" rel="stylesheet" />
+<section class="storeDetail">
+    <div class="storeDetail-intro">
+        <article class="storeDetail-intro-view J_bigImgBlock">
+            <article class="storeDetail-intro-view J_bigImgBlock">
+                <div class="storeDetail-intro-view-bigImg">
+                    <ul>
+                        <li><img src="~/Areas/Reception/Content/static/product/plus/@Model.IMG" style="width:500px;height:500px" id="tp"></li>
+                    </ul>
+                </div>
+            </article>
+        </article>
+        <article class="storeDetail-intro-options">
+            <p class="name" id="productName">@Model.TypeName</p>
+            <div class="countBox">
+                <div class="selectOption clearfix">
+                    <p class="optionTit">价格</p>
+                    <dl class="countBox-price clearfix">
+                        <dd id="price">￥@Model.Price</dd>
+                    </dl>
+                </div>
+
+                <div class="selectOption clearfix js-option  js-option-master">
+
+                    <p class="optionTit" id="color">@Model.Desc</p>
+                    <dl class="optionBorder clearfix" id="pro">
+                        @*active 显示选择谁*@
+                        @foreach (Shopping.Models.ProductProperty item in ViewBag.ps)
+                        {
+                            if (item.ProperName == @Model.ProName)
+                            {
+                                <dd class="optionList active" id="dd" pid="@item.ProperID">@Model.ProName</dd>
+                            }
+                            else
+                            {
+                                <dd class="optionList " id="dd" pid="@item.ProperID">@item.ProperName</dd>
+                            }
+                        }
+                    </dl>
+                </div>
+                <div class="selectNum clearfix">
+                    <p class="selectNumTit">数量</p>
+                    <div class="numBox">
+                        <span class="subtract" id="reduce">-</span>
+                        <input class="showNum" type="text" value="1" id="count" />
+                        <span class="addNum" id="add">+</span>
+                    </div>
+                </div>
+                <div class="selectNum clearfix" style="margin-top:10px;">
+                    <p class="selectNumTit">库存</p>
+                    <div class="numBox" style="color:red;" id="kc">
+                        @Model.Quantity  件
+                    </div>
+                </div>
+            </div>
+            @*disabled  有这个灰色，没这个红色*@
+            <div class="joinCarBtn " id="car">
+                <span class="icon-cart"></span>加入购物车
+            </div>
+
+
+            <div class="storeDetail-intro-options-tips">
+                <p class="tips-title">全场配件满499元包邮。</p>
+                <p>客服电话400-6388-666，周一至周日6:00-21:00</p>
+                <p>(仅收市话费)。</p>
+            </div>
+
+        </article>
+    </div>
+</section>
+
+<div class="niuDialog-mask show" style="display:none;" id="one"></div>
+<div class="niuDialog alert show" style="display:none;" id=two>
+    <div class="niuDialog-head"></div>
+    <div class="niuDialog-body">
+
+    </div>
+    <div class="niuDialog-foot">
+        <span class="niuDialog-leftBtn ">
+            确定
+        </span>
+        <span class="niuDialog-rightBtn " style="padding-right: 10px; color: #df001f;text-align:right;">
+            取消
+        </span>
+    </div>
+</div>
+
+
+
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script>
+    $(function () {
+        //添加数量
+        $("#add").click(function () {
+            var count = $("#count").val();  //取值
+            var a = parseInt(count);
+            var b = parseInt(@Model.Quantity);//库存
+            if (a < b) {
+                $("#count").val(parseInt(count) + 1);  //重新赋值
+            }
+        });
+        //减少数量
+        $("#reduce").click(function () {
+            var count = $("#count").val();   //取值
+            if (count != "1") {         //数量等于1不能再减少了
+                $("#count").val(parseInt(count) - 1);   //重新赋值
+            };
+        });
+    });
+
+    $(document).ready(function () {
+        if (parseInt(@Model.Quantity) == 0) {     //如果库存没有
+            $("#car").attr("class", "joinCarBtn disabled");     //显示灰色  把class加个 disabled
+            $("#car").html('<span class="icon-cart" disabled="disabled"></span>已售罄');    //文字改为已售罄  图标需要加上
+            $("#car")
+        }
+
+
+        //start
+        //选择不同的属性显示不同的数据
+        $("#pro").on('click', "dd#dd", function () {
+            $(this).parents("dl").find("dd").attr("class", "optionList ");    //被选中有边框，其余的没有
+            $(this).attr("class", "optionList active");      //属性名称的选中换位子
+            var pid = $(this).attr("pid");  //属性ID
+            //通过Josn返回数据来静态的改变页面
+             $.ajax({
+                 type: "get",
+                 url:"@Url.Action("dataPro")",
+                 data:{id:pid},
+                 success: function (data) {
+                     $("#tp").attr("src", "~/Areas/Reception/Content/static/product/plus/" + data.IMG + "");   //换图片
+                     $("#price").html("￥" + data.price + "");   //换价格
+                     $("#kc").html(data.Quan + "件");   //换库存
+                     if (data.Quan=="0") {
+                         $("#car").attr("class", "joinCarBtn disabled");     //显示灰色  把class加个 disabled
+                         $("#car").html('<span class="icon-cart" disabled="disabled"></span>已售罄');    //文字改为已售罄  图标需要加上
+                     } else {
+                         $("#car").attr("class", "joinCarBtn ");     //显示红色  把class去掉个 disabled
+                         $("#car").html('<span class="icon-cart"></span>加入购物车');    //文字改为加入购物车  图标需要加上
+                     }
+                 },
+                 error: function () {
+                     alert("错误");
+                 }
+             })
+
+        })
+        //end
+
+        //start   加入购物车
+        $("#car").click(function () {
+            //如果已售罄 提示用户
+            if ($("#car").html() == '<span class="icon-cart" disabled="disabled"></span>已售罄') {
+                $("#one,#two").css("display", "block");
+                $(".niuDialog-body").text("您来晚了，此商品卖完了！！下次早点来哦！！");
+                return false;
+            }
+            //属性ID
+           var dd=$(".active").attr("pid");  //买的是那件商品
+            //个数
+            var count = $("#count").val();
+            window.location = "/Reception/ShopCar/AddShop?id="+dd+"&&count="+count+"";   //加入购物车
+        });
+        //end
+
+        //隐藏提示框
+        $(".niuDialog-leftBtn").click(function () {
+            $("#one,#two").css("display", "none");
+        })
+
+    })
+</script>
+

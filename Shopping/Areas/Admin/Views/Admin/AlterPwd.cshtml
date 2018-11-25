@@ -1,0 +1,64 @@
+﻿@*<script src="~/Areas/Admin/Content/bootstrap-3.3.7-dist/js/jquery-2.1.4.min.js"></script>
+<link href="~/Areas/Admin/Content/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />*@
+<script type="text/javascript">
+    $(function () {
+        var vaildate1 = false;
+        var vaildate2 = false;
+
+        $("#AdminPWD").blur(function () {
+            var leng = $(this).val().length;
+            if (leng < 6 || leng > 9) {
+                $("#re").css("display", "inline").focus();
+                vaildate1 = false;
+            }
+            else {
+                $("#re").css("display", "none").focus();
+                vaildate1 = true;
+            }
+        });
+
+        $("#RPass").blur(function () {
+            if ($(this).val() != $("#AdminPWD").val() || $("#AdminPWD").val() == "") {
+                $("#RAdminPWD").css("display", "inline").focus();
+                vaildate2 = false;
+            }
+            else {
+                $("#RAdminPWD").css("display", "none").focus();
+                vaildate2 = true;
+            }
+        });
+        $("#Add").click(function () {
+            if (vaildate1 == false || vaildate2 == false) {
+                return false;
+            }
+        });
+    });
+</script>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mainleft">
+                <h3>修改密码</h3>
+                <form method="post" action="Temp">
+                    <div class="form-group">
+                        <label style="float:left" for="AdminPWD"><span class="glyphicon glyphicon-lock"></span>新密码</label>
+                        @Html.Password("AdminPWD", null, new { placeholder = "输入6-8位密码", Class = "form-control" })
+                        <span id="s2"></span>
+                        <span style="display:none;color:red;" id="re">密码长度在6-8位</span>
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left" for="RPass"><span class="glyphicon glyphicon-lock"></span>确认密码</label>
+                        @Html.Password("RPass", null, new { placeholder = "输入确认密码", Class = "form-control" })
+                        <span id="s3"></span>
+                        <span style="display:none;color:red;" id="RAdminPWD">两次密码不一样</span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" id="Add">提交</button>
+                        <input type="button" value="取消" class="btn" id="Cancel" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+

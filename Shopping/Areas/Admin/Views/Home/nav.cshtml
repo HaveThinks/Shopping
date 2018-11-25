@@ -1,0 +1,79 @@
+﻿<div class="side-nav">
+    <div class="side-logo">
+        <div class="logo">
+            <span class="logo-ico">
+                <i class="i-l-1"></i>
+                <i class="i-l-2"></i>
+                <i class="i-l-3"></i>
+            </span>
+            <strong>小牛后台管理系统</strong>
+        </div>
+    </div>
+
+    <nav class="side-menu content mCustomScrollbar" data-mcs-theme="minimal-dark">
+        @*<h2>
+            <a><i class="icon-dashboard"></i>@Html.ActionLink("首页", "Index", "Home")</a>
+        </h2>*@
+        <ul>
+            <li>
+                <dl>
+                    <dt>
+                        <a><i class="icon-dashboard"></i>@Html.ActionLink("首页", "Index", "Home")</a>
+                    </dt>
+                </dl>
+            </li>
+            
+            <li>
+
+            <dl>
+                <dt>
+                    <i class="icon-columns"></i>管理员管理<i class="icon-angle-right"></i>
+                </dt>
+                <dd>
+              <li><span class="glyphicon glyphicon-eye-open"></span>@Html.ActionLink("管理员列表", "Index", "Admin")</li>
+        </dd>
+        <dd>
+        <li><span class="glyphicon glyphicon-edit"></span>@Html.ActionLink("修改密码", "AlterPwd", "Admin")</li>
+        </dd>
+        </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>
+                    <i class="icon-inbox"></i>商品管理<i class="icon-angle-right"></i>
+                </dt>
+                <dd>
+        <li><span class="glyphicon glyphicon-eye-open"></span>@Html.ActionLink("商品列表", "Index", "Shop")</li>
+        </dd>
+        <dd>
+            <span class="glyphicon glyphicon-list-alt"></span>@Html.ActionLink("商品型号列表", "ShopXhIndex", "Shop")
+        </dd>
+        <dd>
+            <span class="glyphicon glyphicon-list-alt"></span>@Html.ActionLink("商品属性列表", "ShopShIndex", "Shop")
+        </dd>
+        </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>
+                    <i class="icon-table"></i>订单管理<i class="icon-angle-right"></i>
+                </dt>
+                <dd>
+                    <span class="glyphicon glyphicon-list-alt"></span>@Html.ActionLink("订单列表", "Order", "User")
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>
+                    <i class="icon-list-alt"></i>用户管理<i class="icon-angle-right"></i>
+                </dt>
+                <dd>
+                    <span class="glyphicon glyphicon-list-alt"></span>@Html.ActionLink("用户列表", "Index", "User")
+                </dd>
+            </dl>
+        </li>
+        </ul>
+    </nav>
+    <footer class="side-footer">© DeathGhost 版权所有</footer>
+</div>

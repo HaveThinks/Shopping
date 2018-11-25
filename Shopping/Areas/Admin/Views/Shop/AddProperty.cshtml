@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+<form id="ff">
+    <div class="from-group">
+        <label class="control-label" for="TypeName">属性名称</label>
+        @Html.TextBox("ProperName", null, new { placeholder = "请输入类型名称", Class = "form-control" })
+        <span id="s1"></span>
+        <span style="display:none;color:red" id="account1">请输入属性名称</span>
+    </div>
+    <div class="from-group">
+        <label class="control-label" for="FileUpload1">上传图片</label>
+        <input class="input-group" id="FileUpload1" name="FileUpload1" type="file" />
+    </div>
+
+    <div class="from-group">
+        <label class="control-label" for="FileUpload1">价格</label>
+        <span class="add-on">$<input type="number" name="Price" id="Price" value="100" min="0" max="10000" />.00</span>
+    </div>
+    <div class="from-group">
+        <label class="control-label" for="Quantity">库存</label>
+        <input type="number" name="Quantity" id="Quantity" value="500" min="0" max="10000" />
+    </div>
+    <div class="from-group">
+        <label class="control-label" for="TypeID">商品</label>
+        <div class="controls">
+            <select id="TypeID" data-rel="chosen" placholder="选择所属商品">
+                <option value="">选择所属商品</option>
+                @foreach (Shopping.Models.ProductType item1 in ViewBag.productType)
+                {
+                    <option value="@item1.TypeID">@item1.TypeName</option>
+
+                }
+            </select>
+        </div>
+    </div>
+    <div class="from-group">
+        <label class="control-label" for="Description">类型描述</label>
+        @Html.TextBox("Description", null, new { placeholder = "请输入类型描述", Class = "form-control" })
+        <span id="s2"></span>
+        <span style="display:none;color:red" id="account2">请输入类型描述（200字以内）</span>
+    </div>
+</form>

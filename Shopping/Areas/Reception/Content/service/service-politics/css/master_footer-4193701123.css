@@ -1,0 +1,76 @@
+#u3459
+{
+	background-color: #212121;
+}
+
+#u10705-4,#u10706-4
+{
+	background-color: transparent;
+	color: #7F7F7F;
+	text-align: left;
+	font-size: 12px;
+	line-height: 22px;
+	position: relative;
+}
+
+#u3459_align_to_page,#u10710,#pamphletu9184,#u9193
+{
+	position: relative;
+}
+
+#u9196
+{
+	position: absolute;
+	border-style: none;
+	border-color: transparent;
+	background-color: transparent;
+}
+
+#u9174,#u9199
+{
+	border-style: none;
+	border-color: transparent;
+	background-color: transparent;
+	color: #7F7F7F;
+	font-size: 14px;
+	text-align: center;
+	line-height: 17px;
+	font-weight: bold;
+	position: relative;
+}
+
+#u9185
+{
+	position: absolute;
+	background-color: #565656;
+	background-color: rgba(68,68,68,0.9);
+	-pie-background: rgba(68,68,68,0.9);
+}
+
+#u9187
+{
+	border-style: none;
+	border-color: transparent;
+	background-color: transparent;
+	position: relative;
+}
+
+#u9226
+{
+	background-color: transparent;
+	position: relative;
+}
+
+#u9232-4
+{
+	background-color: transparent;
+	text-align: center;
+	color: #E5E5E5;
+	position: relative;
+}
+
+.PamphletWidget .ThumbGroup .Thumb,.PamphletNextButton,.PamphletPrevButton,.PamphletCloseButton /* pamphlet2 */
+{
+	cursor: pointer;
+}
+

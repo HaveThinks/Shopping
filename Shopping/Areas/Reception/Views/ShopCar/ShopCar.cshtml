@@ -1,0 +1,242 @@
+﻿
+@{
+    ViewBag.Title = "ShopCar";
+}
+<link href="~/Areas/Reception/Content/MyShop/CSS/shopping_cart_2677d8db.css" rel="stylesheet" />
+<link href="~/Areas/Reception/Content/MyShop/CSS/shopping_process_nav_aa8a69db.css" rel="stylesheet" />
+<style>
+    .haha {
+        float: left;
+    }
+</style>
+
+
+<section id="process1" class="shoppingprocess">
+    <div class="sp-content">
+        <ul class="process">
+            <li class="select1 pbtn">1.我的购物车</li>
+            <li class="select2 pbtn">2.填写订单信息</li>
+            <li class="select3 pbtn">3.完成支付</li>
+        </ul>
+    </div>
+</section>
+
+
+
+<section class="shoppingcart">
+    <div class="commodity" id="test">
+        <div class="captioncentent">
+            <ul class="caption">
+                <li class="com-message">商品信息</li>
+                <li class="com-pice">单价</li>
+                <li class="com-count">数量</li>
+                <li class="com-total">小计</li>
+                <li class="com-total">操作</li>
+            </ul>
+        </div>
+
+        @foreach (Shopping.Areas.Reception.Models.ShopCC item in ViewBag.shop)
+        {
+            var img = item.IMG;
+            var count = item.Count;
+            var xj = int.Parse(item.Price) * int.Parse(item.Count);
+            <ul class="com-item com-item-111">
+                <span class="com-select on com-select-111 icon-check" id="redGou" state="Yes" shopid="@item.ShopID"></span>
+                <li class="com-pic"><img src="~/Areas/Reception/Content/static/product/plus/@img" /></li>
+                <li class="com-name">
+                    @item.TypeName @item.ProName
+                </li>
+
+                <li class="com-pice"><span id="price">@item.Price</span> 元</li>
+                <li class="com-count">
+                    <div class="countcontrol">
+                        <span class="countbtn subbtn" id="reduce">-</span>
+                        <input readonly="readonly" type="text" value="@count" class="countinput" autocomplete="off" id="count">
+                        <span class="countbtn addbtn" id="Add">+</span>
+                    </div>
+                </li>
+                <li class="com-total"><span id="xj" name="xj">@xj</span>.00元</li>
+                <span class="delcom delcom-111" id="del" shopid="@item.ShopID"></span>
+            </ul>
+        }
+    </div>
+    <div class="comalltotal">
+        <span class="niu-btn-middle niu-btn-red goappy" id="goappy">下一步</span>
+        <span id="comalltotal">商品合计（不含运费）：4298.00元</span>
+    </div>
+
+</section>
+
+
+<div class="niuDialog-mask show" style="display:none;" id="one"></div>
+<div class="niuDialog alert show" style="display:none;" id=two>
+    <div class="niuDialog-head"></div>
+    <div class="niuDialog-body">
+    </div>
+    <div class="niuDialog-foot">
+        <span class="niuDialog-leftBtn ">
+            确定
+        </span>
+        <span class="niuDialog-rightBtn " style="padding-right: 10px; color: #df001f; float:right;">
+            取消
+        </span>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    //重新计算金额
+    function Rg() {
+        //找到所有的小计就可以得出合计
+        var p = 0;
+        //循环红沟，选中了的就计算价格
+        $(".icon-check").each(function () {
+            if ($(this).attr("state") == "Yes") {
+                var xj = $(this).parents("ul").find("span#xj").text();
+                p = parseInt(p) + parseInt(xj);
+            };
+        })
+        $("#comalltotal").text("商品合计（不含运费）：" + p + ".00元");
+    }
+    //end
+
+    $(document).ready(function () {
+        //上面三个高度
+        $("#process1").css({ "height": "100px" });
+        $(".sp-content").css({ "margin-top": "80px" });
+
+        $("#goappy").css("background-color", "#df001f");  //下一步的背景颜色
+        Rg();  //总计
+
+        //移除商品
+        var dd;
+        var $hh;
+        $("#test").on("click", "span#del", function () {
+            dd = $(this).attr("shopID");  //找到需要移除的商品
+            $hh = $(this).parents("ul");     //找到需要移除的整个记录
+
+            //提示用户
+            $("#one,#two").css("display", "block");
+            $(".niuDialog-head").text("你确定删除该商品吗？");
+            $(".niuDialog-body").text("可能会失去本次购买机会");
+            //highlight        color: #df001f;
+            $(".niuDialog-leftBtn").addClass("haha").css("margin-left", "180px").text("取消");
+            $(".niuDialog-rightBtn").css("display", "block").text("确定");
+
+        });
+        //end
+
+        //点击确定删除
+        $(".niuDialog-rightBtn").click(function () {
+            $("#one,#two").css("display", "none");
+            $(".niuDialog-leftBtn").removeClass("haha").text("确定");
+            $(".niuDialog-rightBtn").css("display", "none").text("取消");   //先还原 原来的提示框
+            //异步去删除，去数据库中删除了
+            $.ajax({
+                type: "get",
+                url: "@Url.Action("DelShop")",
+                data: { id: dd },
+                success: function (data) {
+                    //做删除，添加的时候  没有封装需要刷新的地方又要做异步  一般都是在前台删除标签，后台删除数据，并不是一起，而是分开的
+                $hh.remove();//在页面上移除，数据库和页面上都没有了
+                Rg();
+            }
+        })
+
+
+        })
+
+        //添加数量     数据库中更新OK
+        $("#test").on("click", "span#Add", function () {
+            var $ul = $(this).parents("ul");          //找到需要修改的大ul,改的是这里面的内容，全部通过ul找就可以了
+            var count = $ul.find("input#count").val();       //原来的数量
+            $ul.find("input#count").val(parseInt(count) + 1);       //数量+1
+            var pr = $ul.find("span#price").text();               //单价
+            var cc = $ul.find("input#count").val();                //修改后的数量
+            var id = $ul.find("span.icon-check").attr("shopid");   //购物车ID
+            //异步去修改数据
+            $.ajax({
+                url: "@Url.Action("ModifyShopCar")",
+                type: "get",
+                data: { Shopid: id,Count:cc },
+                success: function (data) {
+                    $ul.find("span#xj").text(parseInt(pr) * parseInt(cc));     //计算小计的价格
+                    Rg();             //下面的总金额
+                }
+            })
+        })
+        //end
+
+
+        //同上
+        //减少数量     数据库中更新OK
+        $("#test").on("click", "span#reduce", function () {
+            var $ul = $(this).parents("ul");
+            var count = $ul.find("input#count").val();
+            if (count != "1") {
+                $ul.find("input#count").val(parseInt(count) - 1);
+                var pr = $ul.find("span#price").text();
+                var cc = $ul.find("input#count").val();
+                var id = $ul.find("span.icon-check").attr("shopid");
+                $.ajax({
+                    url: "@Url.Action("ModifyShopCar")",
+                    type: "get",
+                data: { Shopid: id,Count:cc },
+                success: function (data) {
+                    $ul.find("span#xj").text(parseInt(pr) * parseInt(cc));     //计算小计的价格
+                    Rg();             //下面的总金额
+                }
+            })
+            }
+        })
+        //end
+
+
+        //是否选择此商品
+        $(".icon-check").toggle(function () {
+            $(this).css("background-color", "white");
+            $(this).attr("state", "No");
+            Rg();
+        }, function () {
+            $(this).css("background-color", "#df001f");
+            $(this).attr("state", "Yes");
+            Rg();
+        });
+        //end
+
+
+        //下一步   需要判断哪些商品
+        $("#goappy").click(function () {
+            var id = "";
+            $(".icon-check").each(function () {
+                if ($(this).attr("state") == "Yes") {
+                     id =id+ $(this).attr("shopID")+"|";
+                };
+            })
+            if (id == "") {
+                $("#one,#two").css("display", "block");
+                $(".niuDialog-body").text("请选择商品！！");
+                $(".niuDialog-head").text("");
+                return false;
+            }
+            window.location = "/Reception/WriteOrderInfo/WriteA?ids=" + id;
+        });
+
+        //确认的时候，提示框隐藏
+        $(".niuDialog-leftBtn").click(function () {
+            $("#one,#two").css("display", "none");
+            $(".niuDialog-leftBtn").removeClass("haha").text("确定");
+            $(".niuDialog-rightBtn").css("display","none").text("取消");
+
+        })
+
+    })
+
+</script>
+
+
+@*.icon-check:before {
+        content: "\e902";  //图标
+    }*@

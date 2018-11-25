@@ -1,0 +1,111 @@
+﻿@*<script type="text/javascript">
+        $(function () {
+            //用户图像 登入和没登入显示不同
+            $("#head_menu_userstatus").hover(function () {
+                $(".user-collapse").addClass("show").css("display","inline-block");
+            }, function () {
+                $(".user-collapse").hide();
+                })
+            //购物车图像
+            $("#head_menu_cartlist").hover(function () {
+                $(this).find("div.collapse").addClass.css("display", "inline-block");
+            }, function () {
+                $(this).find("div.collapse").hide();
+            })
+        })
+    </script>*@
+<script type="text/javascript">
+    $(function () {
+        $("#head_menu_userstatus").hover(function () {
+            $(".user-collapse").addClass("show").css("diaplay", "inline-block");
+        }, function () {
+            $(".user-collage").hide();
+        })
+        $("#head_menu_cartlist").hover(function () {
+            $(this).find("div.collapse").addClass("show").css("display", "inline-block");
+        }, function () {
+            $(this).find("div.collapse").hide();
+        })
+    });
+</script>
+<header class="niu-header fixed-top">
+    <div class="header-navCont">
+        <a href="index.html"><div class="header-brand"></div></a>
+        <nav class="header-nav">
+            <ul>
+                <li class="header-nav-collapse">
+                    <a href="javascript:;">小牛电动</a>
+                    <div class="collapse car-collapse">
+                        <div class="car-collapse-content">
+                            <ul>
+                                <li><a href="#" target="_blank"><img src="~/Areas/Reception/Content/static/common/widget/header2/images/m1-header_93193f53.jpg" /><span>M1</span></a></li>
+                                <li><a href="#" target="_blank"><img src="~/Areas/Reception/Content/static/common/widget/header2/images/n1-header_a7bccb9d.jpg" /><span>N1S</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li><a target="_blank" href="@Url.Action("ViewProduct","Store")">商城</a></li>
+                <li><a target="_blank" href="#">niu x plan</a></li>
+                <li><a target="_blank" href="offlineexperience.html">新车试驾</a></li>
+                <li class="header-nav-collapse">
+                    <a target="_blank" href="hall.html">服务</a>
+                    <div class="collapse service-collapse">
+                        <div class="service-collapse-content">
+                            <ul>
+                                <li>
+                                    <a target="_blank" href="niucare.html">
+                                        <div class="service-collapse-content-icon service-care-icon">
+
+                                        </div>
+                                        <div class="service-collapse-content-title">
+                                            <p>NIU CARE</p>
+                                            <p>保养计划</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a target="_blank" href="niucover.html">
+                                        <div class="service-collapse-content-icon service-insurence-icon">
+
+                                        </div>
+                                        <div class="service-collapse-content-title">
+                                            <p>牛油保</p>
+                                            <p>人车保险</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a target="_blank" href="#">
+                                        <div class="service-collapse-content-icon service-locate-icon">
+
+                                        </div>
+                                        <div class="service-collapse-content-title">
+                                            <p>网点</p>
+                                            <p>查找线下服务</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li><a target="_blank" href="#">社区</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <ul class="header-link">
+                <li class="header-link-item" id="head_menu_userstatus">
+                    <a href="#"><i class="icon-profile"></i></a>
+                    <div class="collapse user-collapse">
+                        @{Html.RenderAction("CustomerInfo", "HomePage");}
+                    </div>
+                </li>
+                <li class="header-link-item" id="head_menu_cartlist">
+                    <a target="_blank" href="@Url.Action("ShopCar","ShopCar")"><i class="icon-cart"></i></a>
+                    @{Html.RenderAction("shopCar", "HomePage");}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</header>

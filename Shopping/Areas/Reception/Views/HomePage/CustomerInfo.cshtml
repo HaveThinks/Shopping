@@ -1,0 +1,17 @@
+﻿@if (ViewBag.customerID==null)
+{
+<div class="user-collapse-content">
+    <span class="user-collapse-content-login" id="nav_gologin"><a href="@Url.Action("Login","HomePage")">登录</a></span>
+    <span class="user-collapse-content-reg" id="nav_goreg"><a href="@Url.Action("Register","HomePage")">注册</a></span>
+</div>
+}
+else
+{
+    <div class="user-collapse-content logged">
+        <ul>
+            <li><a href="@Url.Action("","")">我的订单</a></li>
+            <li id="nav_gomodpwd"><a href="@Url.Action("ModifyPWD","HomePage")">修改密码</a></li>
+            <li id="nav_gologout"><a href="@Url.Action("OutLogin","HomePage")">退出登录</a></li>
+        </ul>
+    </div>
+}

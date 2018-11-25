@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+@foreach (Shopping.Models.ProductType item in ViewBag.type)
+{
+    <div class="from-group">
+        <label class="control-label" for="TypeID">属性编号</label>
+        @Html.TextBox("TypeID", item.TypeID, new { @readonly = "readonly", Class = "form-control" })
+    </div>
+    <div class="from-group">
+        <label class="control-label" for="TypeName">类型名称</label>
+        @Html.TextBox("TypeName", item.TypeName, new { placeholder = "请输入类型名称",Class = "form-control" })
+        <span id="s1"></span>
+        <span style="display:none;color:red" id="account1">请输入类型名称</span>
+    </div>
+    <div class="from-group">
+        <label class="control-label" for="Description">类型描述</label>
+        @Html.TextBox("Description", item.Description, new { placeholder = "请输入类型描述", Class = "form-control" })
+        <span id="s2"></span>
+        <span style="display:none;color:red" id="account2">请输入类型描述（50字以内）</span>
+    </div>
+    <div class="from-group">
+        <label class="control-label" for="ProductName">商品</label>
+        <div class="controls">
+            <select id="ProductID" data-rel="chosen" data-placholder="选择所属商品">
+                @foreach (Shopping.Models.Product item1 in ViewBag.product)
+    {
+        if (item.ProductID == item1.ProductID)
+        {
+            <option value="@item1.ProductID" selected="selected">@item1.ProductName</option>
+}
+else
+{
+            <option value="@item1.ProductID">@item1.ProductName</option>
+}
+
+}
+            </select>
+        </div>
+        <span id="s3"></span>
+        <span style="display:none;color:red" id="account3">选择所属商品</span>
+    </div>
+}
+

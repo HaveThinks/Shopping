@@ -1,0 +1,55 @@
+#process1 .select1 {
+	color: #040404
+}
+
+#process2 .select2 {
+	color: #040404
+}
+
+#process3 .select3 {
+	color: #040404
+}
+
+.shoppingprocess {
+	width: 1140px;
+	height: 24px;
+	padding: 40px 0;
+	margin: 0 auto;
+	overflow: hidden
+}
+
+.shoppingprocess .sp-content {
+	overflow: hidden;
+	width: 1140px
+}
+
+.shoppingprocess .sp-content .process,
+.shoppingprocess .sp-content .process>li {
+	margin: 0;
+	padding: 0
+}
+
+.shoppingprocess .sp-content .process>li {
+	float: left
+}
+
+ .shoppingprocess .sp-content .process {
+     overflow:hidden;
+ }
+
+.shoppingprocess .sp-content .process .select2 {
+	border-left: 1px solid #979797;
+	border-right: 1px solid #979797
+}
+
+.shoppingprocess .sp-content .process .pbtn {
+	display: inline-block;
+	color: #a4a9ad;
+	text-align: center;
+	font-size: 14px;
+	line-height: 24px;
+	letter-spacing: .7px;
+	width: 33.33%;
+	height: 24px;
+	box-sizing: border-box
+}

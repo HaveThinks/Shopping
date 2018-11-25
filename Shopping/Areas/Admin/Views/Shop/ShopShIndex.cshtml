@@ -1,0 +1,190 @@
+﻿
+@model IEnumerable<Shopping.Models.ProductProperty>
+
+@{
+    ViewBag.Title = "商品属性列表";
+}
+<script type="text/javascript">
+    $(function () {
+        $("#add").click(function () {
+            $("#myModal").modal("show");
+        })
+        $("#quxiao").click(function () {
+            $("#myModal").modal("close");
+        })
+        //添加商品
+        @*$("#btadd").click(function () {
+            var img;
+            $.post("@Url.Action("AddPrice")", null,function (data) {
+                img = data;
+                var p = {
+                    ProperName: $("#ProperName").val(),
+                    Price: $("#Price").val(),
+                    Quantity: $("#Quantity").val(),
+                    TypeID: $("#TypeID").val(),
+                    Description: $("#Description").val(),
+                    IMG: img
+                };
+                 $.post("@Url.Action("AddProperty")", p, function (data) {
+                if (data != null) {
+                    alert("添加成功!");
+                    location.reload();
+                }
+            });
+            })            
+        });*@
+        //删除商品
+        $("#assets-data-table tbody").on("click", "button#delrow", function () {
+              var tt = $("#assets-data-table").DataTable();
+                var data = tt.row($(this).parents("tr")).data();
+                if (confirm("是否确认删除这条信息")) {
+                    $.ajax({
+                        url: "@Url.Action("DelPro")",
+                        type: "get",
+                        data: { id: data[0] },
+                        success: function (data) {
+                            if (data != null) {
+                                alert("删除成功！");
+                                location.reload();
+                            }
+                        }
+                    })
+                }
+        })
+        //编辑商品
+        var ModifData
+        $("#assets-data-table tbody").on('click', 'button#editrow', function () {
+            var tt = $("#assets-data-table").DataTable();
+            ModifData = tt.row($(this).parents('tr')).data();
+            EditID = ModifData[0];
+            $("#myModals").modal("show")
+        });
+         $("#myModal").on("show.bs.modal", function () {
+            $.ajax({
+                    type: "get",
+                    url: "@Url.Action("AddProperty")",
+                    success: function (data) {
+                    $("#11").html(data);
+                    }
+            })
+        });
+        $("#myModals").on("show.bs.modal", function () {
+            $.ajax({
+                    type: "get",
+                    url: "@Url.Action("EditProperty")",
+                    data: { id: EditID },
+                success: function (data) {
+                    $("#hh").html(data);
+                    }
+            })
+        });
+    })
+</script>
+<body>
+    <button class="btn btn-info btn-sm" id="add">
+        添加商品属性
+    </button>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary" id="list-panel">
+                <div class="panel-heading">
+                    <h1 class="panel-title">商品属性列表</h1>
+                </div>
+                <div class="panel-body">
+                    <table id="assets-data-table" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>名称</th>
+                                <th>图片</th>
+                                <th>价格</th>
+                                <th>库存</th>
+                                <th>类型编号</th>
+                                <th>描述</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var asset in Model)
+                            {
+                                <tr>
+                                    <td>@asset.ProperID.ToString()</td>
+                                    <td>@asset.ProperName</td>
+                                    <td>@asset.IMG</td>
+                                    <td>@asset.Price</td>
+                                    <td>@asset.Quantity</td>
+                                    <td>@asset.TypeID</td>
+                                    <td>@asset.Description</td>
+                                    <td>@asset.CreateTime</td>
+                                    <td>
+                                        <button type="button" id="editrow" class="btn  btn-info btn-xs glyphicon glyphicon-edit"></button>
+                                        <button type="button" id="delrow" class="btn  btn-danger btn-xs glyphicon glyphicon-trash"></button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        添加商品
+                    </h4>
+                </div>
+                <div class="modal-body" id="11">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btadd">
+                        添加
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="quxiao">
+                        取消
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    @*<div class="alert alert-warning fade in " id="alertOne">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>注意！</strong>你的网络连接有问题。
+        </div>*@
+    <div class="modal fade" id="myModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        编辑商品
+                    </h4>
+                </div>
+                <div class="modal-body" id="hh">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="sum1">
+                        修改
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="quxiao1">
+                        取消
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+</body>
+

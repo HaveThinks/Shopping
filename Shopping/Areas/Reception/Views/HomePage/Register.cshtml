@@ -1,0 +1,139 @@
+﻿<section class="content">
+    <div class="c-signup">
+        <div class="niu-form-title"><span>快速注册</span></div>
+        <form method="post" role="form" id="signup_form">
+            <!-- <input type="hidden" name="_csrf" value="">  -->
+            <span class="niu-input niu-input-large niu-input-account" id="tt">
+                <i></i>
+                @Html.TextBox("CustomerName", null, new { @placeholder = "请输入用户名" })
+                <div class="disabled-box disabled-box-Count">
+                    <span class="niu-disabled-icon"></span>
+                    <span class="niu-tipmsg niu-tipmsg-account" id="test" style="color:red">用户名长度必须大于2</span>
+                </div>
+            </span>
+            <span class="niu-input niu-input-large niu-input-pwd">
+                <i></i>
+                @Html.Password("CustomerPWD", null, new { @placeholder = "密码必须包含字母数字且大于6位" })
+                <div class="disabled-box disabled-box-pwd">
+                    <span class="niu-disabled-icon" style="color:red">密码必须包含字母数字且大于6位</span>
+                    <span class="niu-tipmsg niu-tipmsg-pwd"></span>
+                </div>
+            </span>
+            <span class="niu-input niu-input-large niu-input-pwd">
+                <i></i>
+                @Html.Password("re_CustomerPWD", null, new { @placeholder = "请再次输入密码", @class = "required" })
+                <div class="disabled-box disabled-box-pwd" id="zaici">
+                    <span class="niu-disabled-icon" style="color:red">两次密码输入不一致</span>
+                    <span class="niu-tipmsg niu-tipmsg-repwd"></span>
+                </div>
+            </span>
+            <span class="niu-input niu-input-large niu-input-account">
+                <i></i>
+                @Html.TextBox("Tel", null, new { @placeholder = "请输入电话号码", @class = "required", @verify = "number:!" })
+                <div class="disabled-box disabled-box-phone">
+                    <span class="niu-disabled-icon"></span>
+                    <span class="niu-tipmsg niu-tipmsg-account" style="color:red">电话格式不正确</span>
+                </div>
+            </span>
+            @*<span class="niu-input niu-input-large niu-input-phone">
+            <i></i>
+            @Html.TextBox("Tel", null, new { @placeholder = "请输入电话号码", @class = "required", @verify = "number:!" })
+            <div class="disabled-box disabled-box-phone">
+                <span class="niu-disabled-icon"></span>
+                <span class="niu-tipmsg niu-tipmsg-account" style="color:red">电话格式不正确</span>
+            </div>
+        </span>*@
+            <span class="niu-input niu-input-large niu-input-email" id="ee">
+                <i></i>
+                @Html.TextBox("Email", null, new { @placeholder = "请输入电子邮箱", @class = "required", @verify = "email:" })
+                <div class="disabled-box disabled-box-Count">
+                    <span class="niu-disabled-icon"></span>
+                    <span class="niu-tipmsg niu-tipmsg-account" id="test" style="color:red">电话号码格式不正确</span>
+                </div>
+            </span>
+            @*<span class="niu-input niu-input-large niu-input-email">
+                <i></i>
+                @Html.TextBox("Email", null, new { @placeholder = "请输入电子邮箱", @class = "required", @verify = "email:" })
+                <div class="disabled-box disabled-box-email">
+                    <span class="niu-disabled-icon"></span>
+                    <span class="niu-tipmsg niu-tipmsg-email" style="color:red;">邮箱格式不对</span>
+                </div>
+            </span>*@
+            <div class="protocol clearfix">
+                <input class="niu-checkbox" type="checkbox" name="protocol" id="protocol" checked="checked">
+                <label class="niu-checkbox-lable" for='protocol'>已阅读并同意注册&nbsp;<a class="protocol-link" href="protocol.html">用户协议</a></label>
+                <a href="Login" class="login-link">账号登录></a>
+            </div>
+
+        </form>
+        <button class="niu-btn niu-btn-large niu-btn-red" id="signup_btn">完成注册</button>
+        <div class="loginother clearfix">
+        </div>
+    </div>
+</section>
+
+<link href="~/Areas/Reception/Content/static/account/register.css" rel="stylesheet" />
+
+<script>
+    $(function () {
+        $("#signup_btn").click(function () {
+            if ($("#CustomerName").val().length < 2) {
+                $(".disabled-box-Count").show();
+                $(".disabled-box-Count").find("span#test").text("用户名长度必须大于2");
+                return false;
+            }
+            //var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z][6,10]$/;
+            //if (!reg.test($("CustomerPWD").val())) {
+            //    $(".disabled-box-pwd").show();
+            //    return false;
+            //}
+            if ($("#re_CustomerPWD").val()!=$("#CustomerPWD").val()||$("#re_CustomerPWD").val()=="") {
+                $("#zaici").show();
+                return false;
+            }
+            if ($("#Tel").val().length!=11){
+                $(".disabled-box-phone").show();
+                return false;
+            }
+            if ($("#protocol").attr("checked") != "checked") {
+                return false;
+            };
+            var p = {
+                CustomerName: $("#CustomerName").val(),
+                CustomerPWD: $("#CustomerPWD").val(),
+                Tel: $("#Tel").val(),
+                Email:$("#Email").val()
+            }
+            $.post("@Url.Action("Register")", p, function (data) {
+                if (data!="NO") {
+                    window.location = data;
+                } else {
+                    $(".disabled-box-Count").show();
+                    $(".disabled-box-Count").find("span#test").text("此用户已存在，请换个名字");
+                    return false;
+                }
+            });
+        });
+
+        $(".disabled-box-Count").click(function () {
+            $(this).hide();
+            $(".niu-input-account input").focus();
+        });
+        $(".disabled-box-pwd").click(function () {
+            $(this).hide();
+            $(".niu-input-pwd input").focus();
+        });
+        $(".disabled-box-repwd").click(function () {
+            $(this).hide();
+            $("#re_CustomerPWD").focus();
+        });
+        $(".disabled-box-phone").click(function () {
+            $(this).hide();
+            $("#Tel").focus();
+        });
+        $(".disabled-box-email").click(function () {
+            $(this).hide();
+            $("#Email").focus();
+        });
+    });
+</script>
